@@ -2,6 +2,7 @@ package com.codecool.quest.logic;
 
 import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.actors.Skeleton;
+import com.codecool.quest.logic.items.Key;
 import com.codecool.quest.logic.items.Sword;
 
 import java.io.InputStream;
@@ -32,6 +33,9 @@ public class MapLoader {
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
+                        case 'e':
+                            cell.setType(CellType.EXIT);
+                            break;
                         case 's':
                             cell.setType(CellType.FLOOR);
                             new Skeleton(cell);
@@ -43,6 +47,11 @@ public class MapLoader {
                         case '/':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
+//                            System.out.println(cell.getX() + " : " + cell.getY()); // coordinate of sword
+                            break;
+                        case 'k':
+                            cell.setType(CellType.FLOOR);
+                            new Key(cell);
 //                            System.out.println(cell.getX() + " : " + cell.getY()); // coordinate of sword
                             break;
                         default:
