@@ -2,6 +2,7 @@ package com.codecool.quest.logic;
 
 import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.actors.Skeleton;
+import com.codecool.quest.logic.items.Sword;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -38,6 +39,11 @@ public class MapLoader {
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
+                            break;
+                        case '/':
+                            cell.setType(CellType.FLOOR);
+                            new Sword(cell);
+//                            System.out.println(cell.getX() + " : " + cell.getY()); // coordinate of sword
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
