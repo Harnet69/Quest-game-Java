@@ -37,6 +37,9 @@ public class MapLoader {
                         case 'e':
                             cell.setType(CellType.EXIT);
                             break;
+                        case 'd':
+                            cell.setType(CellType.DOOR);
+                            break;
                         case 's':
                             cell.setType(CellType.FLOOR);
                             new Skeleton(cell);
@@ -55,7 +58,6 @@ public class MapLoader {
                             new Key(cell);
 //                            System.out.println(cell.getX() + " : " + cell.getY()); // coordinate of sword
                             break;
-
                             case 'b':
                             cell.setType(CellType.FLOOR);
                             new Bones(cell);
