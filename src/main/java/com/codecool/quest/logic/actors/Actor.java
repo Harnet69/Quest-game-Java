@@ -8,7 +8,7 @@ import static com.codecool.quest.logic.CellType.FLOOR;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
-    private int health = 20;
+    private int health = 10;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -25,6 +25,10 @@ public abstract class Actor implements Drawable {
             nextCell.setActor(this);
             cell = nextCell;
         }
+//        else if(nextCell.getActor() != null ) {
+//            System.out.println("Fight with a skeleton!!!");
+//        }
+//        return nextCell;
     }
 
     public int getHealth() {
