@@ -31,6 +31,7 @@ public class Player extends Actor {
         if(enemy != null){
             System.out.println("Player fight with a skeleton!!!");
             enemy.decreaseHealth(damage);
+            decreaseHealth(2);
             System.out.println(enemy.getHealth());
         }
     }
