@@ -15,22 +15,6 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
-    public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        // Interaction with environment
-        CellType nextCellType = nextCell.getType();
-        // actor can move only if the next cell is a floor and not an another actor
-        if(nextCellType == FLOOR && nextCell.getActor() == null) {
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        }
-//        else if(nextCell.getActor() != null ) {
-//            System.out.println("Fight with a skeleton!!!");
-//        }
-//        return nextCell;
-    }
-
     public int getHealth() {
         return health;
     }
@@ -45,5 +29,21 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public void decreaseHealth(int pointsToRemove){
+        health -= pointsToRemove;
+    }
+
+    public void move(int dx, int dy) {
+        Cell nextCell = cell.getNeighbor(dx, dy);
+        // Interaction with environment
+        CellType nextCellType = nextCell.getType();
+        // actor can move only if the next cell is a floor and not an another actor
+        if(nextCellType == FLOOR && nextCell.getActor() == null) {
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
     }
 }

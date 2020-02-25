@@ -94,14 +94,15 @@ public class Main extends Application {
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
-                // Show actors ona map
-                if (cell.getActor() != null) {
+                // Show actors on a map if they are alive
+                if (cell.getActor() != null && cell.getActor().getHealth() >=0) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 }
                 // Show items on a map
                 else if(cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
                 } else {
+                    cell.setActor(null);
                     Tiles.drawTile(context, cell, x, y);
                 }
             }

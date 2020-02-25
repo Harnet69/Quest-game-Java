@@ -5,6 +5,7 @@ import com.codecool.quest.logic.actors.Actor;
 
 public class Player extends Actor {
     private boolean isHasASword = false;
+    private int damage = 3;
 
     public Player(Cell cell) {
         super(cell);
@@ -26,8 +27,11 @@ public class Player extends Actor {
     public void move(int dx, int dy) {
         super.move(dx, dy);
         Cell nextCell = super.getCell().getNeighbor(dx, dy);
-        if(nextCell.getActor() != null){
-            System.out.println("Fight with a skeleton!!!");
-        };
+        Actor enemy = nextCell.getActor();
+        if(enemy != null){
+            System.out.println("Player fight with a skeleton!!!");
+            enemy.decreaseHealth(damage);
+            System.out.println(enemy.getHealth());
+        }
     }
 }
