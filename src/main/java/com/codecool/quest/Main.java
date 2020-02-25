@@ -4,16 +4,20 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap(); // game map
@@ -22,11 +26,14 @@ public class Main extends Application {
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Button pickUpBtn = new Button("Pick Up");
+    Label accepted = new Label();
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    // right side's panel
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane ui = new GridPane();
@@ -35,6 +42,15 @@ public class Main extends Application {
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
+
+//        ui.add(pickUpBtn, 0, 11);
+        ui.add(accepted, 2, 11);
+
+        pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                accepted.setText("Picked up!");
+            }
+        });
 
         BorderPane borderPane = new BorderPane();
 
@@ -47,6 +63,7 @@ public class Main extends Application {
         scene.setOnKeyPressed(this::onKeyPressed);
 
         primaryStage.setTitle("Codecool Quest");
+//        primaryStage.requestFocus();
         primaryStage.show();
     }
 
@@ -90,5 +107,6 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+//        pickUpBtn.setText("!!!!!" + map.getPlayer().getHealth());
     }
 }

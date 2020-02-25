@@ -8,7 +8,7 @@ import static com.codecool.quest.logic.CellType.FLOOR;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
-    private int health = 10;
+    private int health = 20;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -19,7 +19,8 @@ public abstract class Actor implements Drawable {
         Cell nextCell = cell.getNeighbor(dx, dy);
         // Interaction with environment
         CellType nextCellType = nextCell.getType();
-        if(nextCellType == FLOOR) {
+        // actor can move only if the next cell is a floor and not an another actor
+        if(nextCellType == FLOOR && nextCell.getActor() == null) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
