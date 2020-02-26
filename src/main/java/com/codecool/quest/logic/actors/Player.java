@@ -15,6 +15,7 @@ public class Player extends Actor {
     public String getTileName() {
         // if player has a sword
         if(isHasASword) {
+            setDamage(5);
             return "playerWithSword";
         }
         return "player";
@@ -28,6 +29,14 @@ public class Player extends Actor {
         isHasASword = hasASword;
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
     @Override
     public void move(int dx, int dy) {
         super.move(dx, dy);
@@ -36,7 +45,7 @@ public class Player extends Actor {
         if(enemy != null){
             System.out.println("Player fight with a skeleton!!!");
             enemy.decreaseHealth(damage);
-            decreaseHealth(2);
+            this.decreaseHealth(2);
             System.out.println(enemy.getHealth());
         }
     }

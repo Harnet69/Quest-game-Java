@@ -44,10 +44,10 @@ public class Main extends Application {
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
 
-        ui.add(pickUpBtn, 0, 5);
-        ui.add(new Label("Inventory: "), 0, 10);
-        ui.add(items, 0, 15);
-        ui.add(bones, 0, 20);
+        ui.add(pickUpBtn, 0, 1);
+        ui.add(new Label("Inventory: "), 0, 2);
+        ui.add(items, 0, 3);
+        ui.add(bones, 0, 4);
 
         // push a pick up button
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
