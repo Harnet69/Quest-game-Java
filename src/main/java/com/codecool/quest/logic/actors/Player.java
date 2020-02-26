@@ -20,7 +20,7 @@ public class Player extends Actor {
 
     public String getTileName() {
         // if player has a sword
-        if(isHasASword) {
+        if (isHasASword) {
             setDamage(5);
             return "playerWithSword";
         }
@@ -54,21 +54,23 @@ public class Player extends Actor {
 
     public void move(GameMap map, int dx, int dy) {
         super.move(dx, dy);
-        Cell nextCell = super.getCell().getNeighbor(dx, dy);
-        Actor enemy = nextCell.getActor();
-        if(enemy != null){
-            System.out.println("Player fight with a skeleton!!!");
-            enemy.decreaseHealth(damage);
-            this.decreaseHealth(2);
-            System.out.println(enemy.getHealth());
-        }
-        else if(nextCell.getTileName().equals("door")) {
-            System.out.println("It's a locked door");
-            if(map.getPlayer().isHasAkey){
-                System.out.println("But you have a key");
-                map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
-                map.getPlayer().setHasAkey(false);
-            }
+        if (super.getCell().getNeighbor(dx, dy) == null) {
+            System.out.println("There is the exit!");
+        } else {
+            Cell nextCell = super.getCell().getNeighbor(dx, dy);
+            Actor enemy = nextCell.getActor();
+            if (enemy != null) {
+                System.out.println("Player fight with a skeleton!!!");
+                enemy.decreaseHealth(damage);
+                this.decreaseHealth(2);
+                System.out.println(enemy.getHealth());
+            } else if (nextCell.getTileName().equals("door") || nextCell.getTileName().equals("exit")) {
+                System.out.println("It's a locked door");
+                if (map.getPlayer().isHasAkey) {
+                    System.out.println("But you have a key");
+                    map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
+                    map.getPlayer().setHasAkey(false);
+                }
 //            getCell().getActor().
 //            if(nextCell.getTileName()) {
 //
@@ -76,6 +78,7 @@ public class Player extends Actor {
 //            cell.setActor(null);
 //            nextCell.setActor(this);
 //            cell = nextCell;
+            }
         }
     }
 }

@@ -13,7 +13,10 @@ public class Skeleton extends Actor {
         return "skeleton";
     }
 
-    @Override
+    public void beat()  {
+        System. out.println("Skeleton beat a player!!!");
+    }
+
     public void move(int dx, int dy) {
 //        super.move(dx, dy);
 //        Cell nextCell = super.getCell().getNeighbor(dx, dy);

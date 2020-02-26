@@ -4,6 +4,7 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
 import com.codecool.quest.logic.actors.Player;
+import com.codecool.quest.logic.actors.Skeleton;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -117,6 +118,7 @@ public class Main extends Application {
                 break;
         }
         // action after each player's movement
+//        System.out.println(map.getPlayer().getCell().getX() + " : "+  map.getPlayer().getCell().getY());
 //        map.getSkeleton().move(map.getPlayer().getCell().getX(), map.getPlayer().getCell().getY());
         if(!map.getPlayer().isHasAkey()){
             key.setText("");
