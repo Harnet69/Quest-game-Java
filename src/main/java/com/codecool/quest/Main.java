@@ -4,6 +4,7 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
+import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.items.Bones;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -53,9 +54,13 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent e) {
                 if (map.getPlayer().getCell().getItem() != null) {
-                    accepted.setText(map.getPlayer().getCell().getItem().getTileName());
-                    int x = map.getPlayer().getCell().getX();
-                    int y = map.getPlayer().getCell().getY();
+                    Player player = map.getPlayer();
+                    if(map.getPlayer().getCell().getItem().getTileName().equals("sword")) {
+                        player.setHasASword(true);
+                        accepted.setText(map.getPlayer().getCell().getItem().getTileName());
+                    }
+                    int x = player.getCell().getX();
+                    int y = player.getCell().getY();
                     map.getCell(x, y).setItem(null);
                     refresh();
                 }
@@ -112,6 +117,10 @@ public class Main extends Application {
                 // Show actors on a map if they are alive
                 if (cell.getActor() != null && cell.getActor().getHealth() >= 0) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
+//                    if(map.getPlayer().isHasASword()){
+//                        System.out.println("Author has a sword");
+//                        // Change tileMap
+//                    }
                 }
                 // Show items on a map
                 else if (cell.getItem() != null) {

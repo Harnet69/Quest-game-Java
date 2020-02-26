@@ -13,6 +13,10 @@ public class Player extends Actor {
     }
 
     public String getTileName() {
+        // if player has a sword
+        if(isHasASword) {
+            return "playerWithSword";
+        }
         return "player";
     }
 
