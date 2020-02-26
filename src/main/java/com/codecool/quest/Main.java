@@ -31,6 +31,7 @@ public class Main extends Application {
     Label bones = new Label();
     Label key = new Label();
 
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -68,9 +69,7 @@ public class Main extends Application {
                         player.setHasAkey(true);
                         key.setText(map.getPlayer().getCell().getItem().getTileName());
                     }
-                    int x = player.getCell().getX();
-                    int y = player.getCell().getY();
-                    map.getCell(x, y).setItem(null);
+                    map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
                     refresh();
                 }
             }
@@ -97,19 +96,19 @@ public class Main extends Application {
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
-                map.getPlayer().move(0, -1);
+                map.getPlayer().move(map, 0, -1);
                 refresh();
                 break;
             case DOWN:
-                map.getPlayer().move(0, 1);
+                map.getPlayer().move(map,0, 1);
                 refresh();
                 break;
             case LEFT:
-                map.getPlayer().move(-1, 0);
+                map.getPlayer().move(map,-1, 0);
                 refresh();
                 break;
             case RIGHT:
-                map.getPlayer().move(1, 0);
+                map.getPlayer().move(map,1, 0);
                 refresh();
                 break;
         }
@@ -127,10 +126,6 @@ public class Main extends Application {
                 // Show actors on a map if they are alive
                 if (cell.getActor() != null && cell.getActor().getHealth() > 0) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
-//                    if(map.getPlayer().isHasASword()){
-//                        System.out.println("Author has a sword");
-//                        // Change tileMap
-//                    }
                 }
                 // Show items on a map
                 else if (cell.getItem() != null) {

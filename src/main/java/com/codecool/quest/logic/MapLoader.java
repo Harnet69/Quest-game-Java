@@ -51,17 +51,14 @@ public class MapLoader {
                         case '/':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
-//                            System.out.println(cell.getX() + " : " + cell.getY()); // coordinate of sword
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
-//                            System.out.println(cell.getX() + " : " + cell.getY()); // coordinate of sword
                             break;
                             case 'b':
                             cell.setType(CellType.FLOOR);
                             new Bones(cell);
-//                            System.out.println(cell.getX() + " : " + cell.getY()); // coordinate of sword
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

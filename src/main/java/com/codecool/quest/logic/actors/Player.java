@@ -1,8 +1,12 @@
 package com.codecool.quest.logic.actors;
 
 import com.codecool.quest.logic.Cell;
+import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.items.Item;
+
+
+import static com.codecool.quest.logic.CellType.DOOR;
 
 public class Player extends Actor {
     private boolean isHasASword = false;
@@ -46,8 +50,8 @@ public class Player extends Actor {
         this.damage = damage;
     }
 
-    @Override
-    public void move(int dx, int dy) {
+
+    public void move(GameMap map, int dx, int dy) {
         super.move(dx, dy);
         Cell nextCell = super.getCell().getNeighbor(dx, dy);
         Actor enemy = nextCell.getActor();
@@ -56,6 +60,19 @@ public class Player extends Actor {
             enemy.decreaseHealth(damage);
             this.decreaseHealth(2);
             System.out.println(enemy.getHealth());
+        }
+        else if(nextCell.getTileName().equals("door")) {
+            System.out.println("It's a locked door");
+            if(map.getPlayer().isHasAkey){
+                System.out.println("But you have a key");
+            }
+//            getCell().getActor().
+//            if(nextCell.getTileName()) {
+//
+//            }
+//            cell.setActor(null);
+//            nextCell.setActor(this);
+//            cell = nextCell;
         }
     }
 }
