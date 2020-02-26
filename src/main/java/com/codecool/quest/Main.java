@@ -15,6 +15,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -45,12 +46,13 @@ public class Main extends Application {
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
 
-//        ui.add(pickUpBtn, 0, 11);
+        ui.add(pickUpBtn, 0, 11);
         ui.add(accepted, 2, 11);
 
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 accepted.setText("Picked up!");
+
             }
         });
 
@@ -62,8 +64,10 @@ public class Main extends Application {
         Scene scene = new Scene(borderPane);
         primaryStage.setScene(scene);
         refresh();
-        scene.setOnKeyPressed(this::onKeyPressed);
 
+//        scene.setOnKeyPressed(this::onKeyPressed);
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, this::onKeyPressed);
+//        pickUpBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::mo);
         primaryStage.setTitle("Codecool Quest");
 //        primaryStage.requestFocus();
         primaryStage.show();
@@ -88,6 +92,8 @@ public class Main extends Application {
                 refresh();
                 break;
         }
+        refresh();
+        keyEvent.consume();
     }
 
     private void refresh() {

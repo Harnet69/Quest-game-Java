@@ -2,6 +2,7 @@ package com.codecool.quest.logic.actors;
 
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.actors.Actor;
+import com.codecool.quest.logic.items.Item;
 
 public class Player extends Actor {
     private boolean isHasASword = false;

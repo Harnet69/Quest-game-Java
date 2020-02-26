@@ -5,10 +5,12 @@ import com.codecool.quest.logic.Drawable;
 
 public abstract class Item implements Drawable {
     private Cell cell;
+    private boolean isPickedUp;
 
     public Item(Cell cell) {
         this.cell = cell;
         this.cell.setItem(this);
+        this.isPickedUp = false;
     }
 
 
@@ -22,5 +24,13 @@ public abstract class Item implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public boolean isPickedUp() {
+        return isPickedUp;
+    }
+
+    public void setPickedUp(boolean pickedUp) {
+        isPickedUp = pickedUp;
     }
 }
