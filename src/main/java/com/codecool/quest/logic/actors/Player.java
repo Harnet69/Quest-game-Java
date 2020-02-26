@@ -1,6 +1,7 @@
 package com.codecool.quest.logic.actors;
 
 import com.codecool.quest.logic.Cell;
+import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.items.Item;
@@ -65,6 +66,7 @@ public class Player extends Actor {
             System.out.println("It's a locked door");
             if(map.getPlayer().isHasAkey){
                 System.out.println("But you have a key");
+                map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
             }
 //            getCell().getActor().
 //            if(nextCell.getTileName()) {

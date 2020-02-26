@@ -16,4 +16,5 @@ public enum CellType {
     public String getTileName() {
         return tileName;
     }
+
 }
