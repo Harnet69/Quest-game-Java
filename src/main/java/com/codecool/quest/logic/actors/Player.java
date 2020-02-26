@@ -6,7 +6,8 @@ import com.codecool.quest.logic.items.Item;
 
 public class Player extends Actor {
     private boolean isHasASword = false;
-    private int damage = 3;
+    private boolean isHasAkey = false;
+    private int damage = 4;
 
     public Player(Cell cell) {
         super(cell);
@@ -27,6 +28,14 @@ public class Player extends Actor {
 
     public void setHasASword(boolean hasASword) {
         isHasASword = hasASword;
+    }
+
+    public boolean isHasAkey() {
+        return isHasAkey;
+    }
+
+    public void setHasAkey(boolean hasAkey) {
+        isHasAkey = hasAkey;
     }
 
     public int getDamage() {

@@ -29,6 +29,7 @@ public class Main extends Application {
     Button pickUpBtn = new Button("Pick Up");
     Label items = new Label();
     Label bones = new Label();
+    Label key = new Label();
 
     public static void main(String[] args) {
         launch(args);
@@ -48,6 +49,7 @@ public class Main extends Application {
         ui.add(new Label("Inventory: "), 0, 2);
         ui.add(items, 0, 3);
         ui.add(bones, 0, 4);
+        ui.add(key, 0, 5);
 
         // push a pick up button
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -61,6 +63,10 @@ public class Main extends Application {
                     }
                     else if(map.getPlayer().getCell().getItem().getTileName().equals("bones")) {
                         bones.setText(map.getPlayer().getCell().getItem().getTileName());
+                    }
+                    else if(map.getPlayer().getCell().getItem().getTileName().equals("key")) {
+                        player.setHasAkey(true);
+                        key.setText(map.getPlayer().getCell().getItem().getTileName());
                     }
                     int x = player.getCell().getX();
                     int y = player.getCell().getY();
@@ -107,6 +113,7 @@ public class Main extends Application {
                 refresh();
                 break;
         }
+//        map.getSkeleton().move(map.getPlayer().getCell().getX(), map.getPlayer().getCell().getY());
         refresh();
         keyEvent.consume();
     }
@@ -118,7 +125,7 @@ public class Main extends Application {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
                 // Show actors on a map if they are alive
-                if (cell.getActor() != null && cell.getActor().getHealth() >= 0) {
+                if (cell.getActor() != null && cell.getActor().getHealth() > 0) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
 //                    if(map.getPlayer().isHasASword()){
 //                        System.out.println("Author has a sword");
