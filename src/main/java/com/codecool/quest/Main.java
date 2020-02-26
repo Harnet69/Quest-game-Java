@@ -1,11 +1,9 @@
 package com.codecool.quest;
 
 import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
 import com.codecool.quest.logic.actors.Player;
-import com.codecool.quest.logic.items.Bones;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,12 +14,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.layout.VBox;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap(); // game map
@@ -31,7 +27,8 @@ public class Main extends Application {
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
     Button pickUpBtn = new Button("Pick Up");
-    Label accepted = new Label();
+    Label items = new Label();
+    Label bones = new Label();
 
     public static void main(String[] args) {
         launch(args);
@@ -47,9 +44,12 @@ public class Main extends Application {
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
 
-        ui.add(pickUpBtn, 0, 11);
-        ui.add(accepted, 2, 11);
+        ui.add(pickUpBtn, 0, 5);
+        ui.add(new Label("Inventory: "), 0, 10);
+        ui.add(items, 0, 15);
+        ui.add(bones, 0, 20);
 
+        // push a pick up button
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -57,7 +57,10 @@ public class Main extends Application {
                     Player player = map.getPlayer();
                     if(map.getPlayer().getCell().getItem().getTileName().equals("sword")) {
                         player.setHasASword(true);
-                        accepted.setText(map.getPlayer().getCell().getItem().getTileName());
+                        items.setText(map.getPlayer().getCell().getItem().getTileName());
+                    }
+                    else if(map.getPlayer().getCell().getItem().getTileName().equals("bones")) {
+                        bones.setText(map.getPlayer().getCell().getItem().getTileName());
                     }
                     int x = player.getCell().getX();
                     int y = player.getCell().getY();
