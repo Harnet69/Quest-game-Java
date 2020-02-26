@@ -50,10 +50,17 @@ public class Main extends Application {
         ui.add(accepted, 2, 11);
 
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                accepted.setText("Picked up!");
-
+            @Override
+            public void handle(ActionEvent e) {
+                if (map.getPlayer().getCell().getItem() != null) {
+                    accepted.setText(map.getPlayer().getCell().getItem().getTileName());
+                    int x = map.getPlayer().getCell().getX();
+                    int y = map.getPlayer().getCell().getY();
+                    map.getCell(x, y).setItem(null);
+                    refresh();
+                }
             }
+
         });
 
         BorderPane borderPane = new BorderPane();
@@ -88,7 +95,7 @@ public class Main extends Application {
                 refresh();
                 break;
             case RIGHT:
-                map.getPlayer().move(1,0);
+                map.getPlayer().move(1, 0);
                 refresh();
                 break;
         }
@@ -103,11 +110,11 @@ public class Main extends Application {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
                 // Show actors on a map if they are alive
-                if (cell.getActor() != null && cell.getActor().getHealth() >=0) {
+                if (cell.getActor() != null && cell.getActor().getHealth() >= 0) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 }
                 // Show items on a map
-                else if(cell.getItem() != null) {
+                else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
                 } else {
                     cell.setActor(null);
