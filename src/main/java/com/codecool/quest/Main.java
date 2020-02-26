@@ -69,6 +69,10 @@ public class Main extends Application {
                         player.setHasAkey(true);
                         key.setText(map.getPlayer().getCell().getItem().getTileName());
                     }
+                    else if(!player.isHasAkey()){
+                        System.out.println("No key");
+                        key.setText("no key");
+                    }
                     map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
                     refresh();
                 }
@@ -112,7 +116,11 @@ public class Main extends Application {
                 refresh();
                 break;
         }
+        // action after each player's movement
 //        map.getSkeleton().move(map.getPlayer().getCell().getX(), map.getPlayer().getCell().getY());
+        if(!map.getPlayer().isHasAkey()){
+            key.setText("");
+        }
         refresh();
         keyEvent.consume();
     }

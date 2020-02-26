@@ -67,6 +67,7 @@ public class Player extends Actor {
             if(map.getPlayer().isHasAkey){
                 System.out.println("But you have a key");
                 map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
+                map.getPlayer().setHasAkey(false);
             }
 //            getCell().getActor().
 //            if(nextCell.getTileName()) {
