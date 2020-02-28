@@ -25,12 +25,7 @@ public class GameMap {
     }
 
     public Cell getCell(int x, int y) {
-        if(x < 20 || y < 20) {
             return cells[x][y];
-        }
-        else{
-            return null;
-        }
     }
 
     public void setPlayer(Player player) {

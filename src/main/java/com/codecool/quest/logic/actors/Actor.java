@@ -4,11 +4,15 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.Drawable;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import static com.codecool.quest.logic.CellType.FLOOR;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+    public static ArrayList<Actor> enemyActors = new ArrayList<Actor>();
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -30,6 +34,7 @@ public abstract class Actor implements Drawable {
     public int getY() {
         return cell.getY();
     }
+
 
     public void decreaseHealth(int pointsToRemove){
         health -= pointsToRemove;
@@ -59,6 +64,21 @@ public abstract class Actor implements Drawable {
 
     // TO moveBehaviour for enemy
     public void moveBehaviour() {
+        Random rand = new Random();
 
+        if(cell.getX() > 0 && cell.getX() < 19 && cell.getY() > 0 && cell.getY() < 19){
+        Cell nextCell = cell.getNeighbor(rand.nextInt(2 + 1) - 1, rand.nextInt(2 + 1) - 1);
+            // Interaction with environment
+            CellType nextCellType = nextCell.getType();
+            // actor can move only if the next cell is a floor and not an another actor
+            if (nextCellType == FLOOR && nextCell.getActor() == null) {
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }else{
+                moveBehaviour();
+            }
+
+        }
     }
 }

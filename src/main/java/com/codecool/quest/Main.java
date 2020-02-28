@@ -3,6 +3,7 @@ package com.codecool.quest;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
+import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.actors.Skeleton;
 import javafx.application.Application;
@@ -118,7 +119,7 @@ public class Main extends Application {
                 break;
         }
         // action after each player's movement
-
+        Actor.enemyActors.get(0).moveBehaviour(); // show 1st skeleton health
         if(!map.getPlayer().isHasAkey()){
             key.setText("");
         }

@@ -1,5 +1,6 @@
 package com.codecool.quest.logic;
 
+import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.actors.Skeleton;
 import com.codecool.quest.logic.items.Bones;
@@ -42,7 +43,8 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
+                            Skeleton skel = new Skeleton(cell);
+                            Actor.enemyActors.add(skel); // add skeleton to EnemiesArray
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
