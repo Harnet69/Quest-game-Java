@@ -4,7 +4,6 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.Drawable;
 
-import static com.codecool.quest.logic.CellType.DOOR;
 import static com.codecool.quest.logic.CellType.FLOOR;
 
 public abstract class Actor implements Drawable {
@@ -56,5 +55,10 @@ public abstract class Actor implements Drawable {
 ////            nextCell.setActor(this);
 ////            cell = nextCell;
 //        }
+    }
+
+    // TO moveBehaviour for enemy
+    public void moveBehaviour() {
+
     }
 }

@@ -118,8 +118,7 @@ public class Main extends Application {
                 break;
         }
         // action after each player's movement
-//        System.out.println(map.getPlayer().getCell().getX() + " : "+  map.getPlayer().getCell().getY());
-//        map.getSkeleton().move(map.getPlayer().getCell().getX(), map.getPlayer().getCell().getY());
+
         if(!map.getPlayer().isHasAkey()){
             key.setText("");
         }
@@ -147,6 +146,5 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
-//        pickUpBtn.setText("!!!!!" + map.getPlayer().getHealth());
     }
 }
