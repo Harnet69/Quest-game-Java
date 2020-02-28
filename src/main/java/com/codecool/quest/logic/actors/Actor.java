@@ -66,7 +66,7 @@ public abstract class Actor implements Drawable {
     public void moveBehaviour() {
         Random rand = new Random();
 
-        if(cell.getX() > 0 && cell.getX() < 19 && cell.getY() > 0 && cell.getY() < 19){
+        if(cell.getX() > 0 && cell.getX() < 24 && cell.getY() > 0 && cell.getY() < 19){
         Cell nextCell = cell.getNeighbor(rand.nextInt(2 + 1) - 1, rand.nextInt(2 + 1) - 1);
             // Interaction with environment
             CellType nextCellType = nextCell.getType();

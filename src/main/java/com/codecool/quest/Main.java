@@ -118,8 +118,10 @@ public class Main extends Application {
                 refresh();
                 break;
         }
-        // action after each player's movement
-        Actor.enemyActors.get(0).moveBehaviour(); // show 1st skeleton health
+        // enemy movement after each player's step
+        for(int i = 0; i< Actor.enemyActors.size(); i++){
+            Actor.enemyActors.get(i).moveBehaviour();
+        }
         if(!map.getPlayer().isHasAkey()){
             key.setText("");
         }
