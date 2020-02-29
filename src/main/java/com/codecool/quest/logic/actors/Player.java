@@ -75,17 +75,19 @@ public class Player extends Actor {
             if (enemy != null) {
                 System.out.println("Player fight with a " + enemy.getName() + "!!!");
                 if(enemy.getName().equals("rustMonster")) {
-                    System.out.println("Without sword@");
+                    System.out.println("Without sword");
+                    map.getPlayer().getInventory().removeFromInventory("sword");
                     isHasASword = false;
                 }
                 enemy.decreaseHealth(damage);
                 this.decreaseHealth(enemy.getDamage());
                 System.out.println(enemy.getHealth());
             } else if (nextCell.getTileName().equals("door") || nextCell.getTileName().equals("exit")) {
-                System.out.println("It's a locked door");
+//                System.out.println("It's a locked door");
                 if (map.getPlayer().isHasAkey) {
-                    System.out.println("But you have a key");
+//                    System.out.println("But you have a key");
                     map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
+                    map.getPlayer().getInventory().removeFromInventory("key");
                     map.getPlayer().setHasAkey(false);
                 }
 //            getCell().getActor().

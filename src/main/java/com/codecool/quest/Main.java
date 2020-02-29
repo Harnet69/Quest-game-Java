@@ -20,9 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.w3c.dom.ls.LSOutput;
-
-import javax.swing.*;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap(); // game map
@@ -32,9 +29,9 @@ public class Main extends Application {
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
     Button pickUpBtn = new Button("Pick Up");
-    Label sword = new Label();
-    Label bones = new Label();
-    Label key = new Label();
+    Label swordLabel = new Label();
+    Label bonesLabel = new Label();
+    Label keyLabel = new Label();
 
 
     public static void main(String[] args) {
@@ -53,9 +50,9 @@ public class Main extends Application {
 
         ui.add(pickUpBtn, 0, 1);
         ui.add(new Label("Inventory: "), 0, 2);
-        ui.add(sword, 0, 3);
-        ui.add(bones, 0, 4);
-        ui.add(key, 0, 5);
+        ui.add(swordLabel, 0, 3);
+        ui.add(bonesLabel, 0, 4);
+        ui.add(keyLabel, 0, 5);
 
         // push a pick up button
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -64,18 +61,21 @@ public class Main extends Application {
                 if (map.getPlayer().getCell().getItem() != null) {
                     Player player = map.getPlayer();
                     Item item = map.getPlayer().getCell().getItem();
-                    System.out.println(item);
+//                    System.out.println(item);
                     player.getInventory().addToInventory(item);
 
-                    switch (item.getTileName()){
-                        case "sword" : player.setHasASword(true);
-                                        sword.setText(item.getTileName());
-                                        break;
-                        case "bones" : bones.setText(item.getTileName());
-                                        break;
-                        case "key" : player.setHasAkey(true);
-                                        key.setText(item.getTileName());
-                                        break;
+                    switch (item.getTileName()) {
+                        case "sword":
+                            player.setHasASword(true);
+                            swordLabel.setText(item.getTileName());
+                            break;
+                        case "bones":
+                            bonesLabel.setText(item.getTileName());
+                            break;
+                        case "key":
+                            player.setHasAkey(true);
+                            keyLabel.setText(item.getTileName());
+                            break;
                     }
 
 //                    if(item.getTileName().equals("sword")) {
@@ -95,10 +95,6 @@ public class Main extends Application {
 //                    }
                     map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
 
-                    //show inventory
-//                    for(Item itemInInventory : map.getPlayer().getInventory().getInventory()) {
-//                        System.out.println(itemInInventory.getTileName());
-//                    }
 
                     refresh();
                 }
@@ -130,28 +126,34 @@ public class Main extends Application {
                 refresh();
                 break;
             case DOWN:
-                map.getPlayer().move(map,0, 1);
+                map.getPlayer().move(map, 0, 1);
                 refresh();
                 break;
             case LEFT:
-                map.getPlayer().move(map,-1, 0);
+                map.getPlayer().move(map, -1, 0);
                 refresh();
                 break;
             case RIGHT:
-                map.getPlayer().move(map,1, 0);
+                map.getPlayer().move(map, 1, 0);
                 refresh();
                 break;
         }
 
         // enemy movement after each player's step
-        for(int i = 0; i< Actor.enemyActors.size(); i++){
+        for (int i = 0; i < Actor.enemyActors.size(); i++) {
             Actor.enemyActors.get(i).moveBehaviour();
         }
+
+//        show inventory
+        for(Item itemInInventory : map.getPlayer().getInventory().getInventory()) {
+            System.out.println(itemInInventory.getTileName());
+        }
+
         if(!map.getPlayer().isHasAkey()){
-            key.setText("");
+            keyLabel.setText("");
         }
         if(!map.getPlayer().isHasASword()){
-            sword.setText("");
+            swordLabel.setText("");
         }
         refresh();
         keyEvent.consume();

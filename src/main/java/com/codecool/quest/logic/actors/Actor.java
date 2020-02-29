@@ -59,19 +59,9 @@ public abstract class Actor implements Drawable {
             nextCell.setActor(this);
             cell = nextCell;
         }
-//        else if(nextCellType == DOOR) {
-//            System.out.println("It's a locked door");
-//
-////            if(nextCell.getTileName()) {
-////
-////            }
-////            cell.setActor(null);
-////            nextCell.setActor(this);
-////            cell = nextCell;
-//        }
     }
 
-    // TO moveBehaviour for enemy
+    // moveBehaviour of enemies
     public void moveBehaviour() {
         Random rand = new Random();
 
@@ -85,7 +75,7 @@ public abstract class Actor implements Drawable {
                 nextCell.setActor(this);
                 cell = nextCell;
             }else if(nextCellType == FLOOR && !nextCell.getActor().getName().equals("Skeleton")){
-                System.out.println(nextCell.getActor().getName());
+//                System.out.println(nextCell.getActor().getName());
 //                System.out.println("Skeleton said Yummy!!!");
                 moveBehaviour();
             }else{

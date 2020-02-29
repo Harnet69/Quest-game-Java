@@ -3,12 +3,13 @@ package com.codecool.quest.logic.inventory;
 import com.codecool.quest.logic.items.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Inventory {
     private ArrayList<Item> inventory;
 
     public Inventory() {
-        this.inventory = new ArrayList<Item>();
+        this.inventory = new ArrayList<>();
     }
 
     public ArrayList<Item> getInventory() {
@@ -19,7 +20,12 @@ public class Inventory {
         inventory.add(item);
     }
 
-    public void removeFromInventory(Item item){
-        inventory.remove(item);
+    public void removeFromInventory(String itemName){
+        for(Item invItem : inventory){
+            if(invItem.getTileName().equals(itemName)){
+                inventory.remove(invItem);
+                return;
+            }
+        }
     }
 }
