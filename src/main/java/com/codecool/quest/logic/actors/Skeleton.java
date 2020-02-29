@@ -5,6 +5,7 @@ import com.codecool.quest.logic.actors.Actor;
 
 public class Skeleton extends Actor {
     private String name = "Skeleton";
+    private int damage = 2;
 
     public Skeleton(Cell cell) {
         super(cell);
@@ -13,6 +14,10 @@ public class Skeleton extends Actor {
     @Override
     public String getName() {
         return name;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     @Override

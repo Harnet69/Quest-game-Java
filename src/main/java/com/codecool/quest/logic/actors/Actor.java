@@ -13,6 +13,7 @@ public abstract class Actor implements Drawable {
     private String name = "Actor";
     private Cell cell;
     private int health = 10;
+    private int damage = 1;
     public static ArrayList<Actor> enemyActors = new ArrayList<Actor>();
 
     public Actor(Cell cell) {
@@ -22,6 +23,10 @@ public abstract class Actor implements Drawable {
 
     public int getHealth() {
         return health;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public Cell getCell() {

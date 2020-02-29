@@ -3,7 +3,7 @@ package com.codecool.quest.logic.actors;
 import com.codecool.quest.logic.Cell;
 
 public class RustMonster extends Actor {
-    private String name = "Rust Monster";
+    private String name = "rustMonster";
 
     public RustMonster(Cell cell) {
         super(cell);

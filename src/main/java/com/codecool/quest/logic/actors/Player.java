@@ -12,7 +12,7 @@ import static com.codecool.quest.logic.CellType.DOOR;
 public class Player extends Actor {
     private boolean isHasASword = false;
     private boolean isHasAkey = false;
-    private int damage = 4;
+    private int damage = 3;
 
     private String name = "Player";
 
@@ -25,8 +25,10 @@ public class Player extends Actor {
         if (isHasASword) {
             setDamage(5);
             return "playerWithSword";
+        }else{
+            setDamage(3);
+            return "player";
         }
-        return "player";
     }
 
     @Override
@@ -68,8 +70,12 @@ public class Player extends Actor {
             Actor enemy = nextCell.getActor();
             if (enemy != null) {
                 System.out.println("Player fight with a " + enemy.getName() + "!!!");
+                if(enemy.getName().equals("rustMonster")) {
+                    System.out.println("Without sword@");
+                    isHasASword = false;
+                }
                 enemy.decreaseHealth(damage);
-                this.decreaseHealth(2);
+                this.decreaseHealth(enemy.getDamage());
                 System.out.println(enemy.getHealth());
             } else if (nextCell.getTileName().equals("door") || nextCell.getTileName().equals("exit")) {
                 System.out.println("It's a locked door");
