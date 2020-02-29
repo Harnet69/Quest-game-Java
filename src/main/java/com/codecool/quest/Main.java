@@ -70,7 +70,7 @@ public class Main extends Application {
                             swordLabel.setText(item.getTileName());
                             break;
                         case "bones":
-                            bonesLabel.setText(item.getTileName());
+                            bonesLabel.setText("You picked a " + item.getTileName());
                             break;
                         case "key":
 //                            player.setHasAkey(true);
@@ -154,6 +154,13 @@ public class Main extends Application {
         }else{
             keyLabel.setText("");
         }
+
+        if(map.getPlayer().getInventory().getItemQUantity("bones") > 0){
+            bonesLabel.setText("bones: " + map.getPlayer().getInventory().getItemQUantity("bones"));
+        }else{
+            bonesLabel.setText("");
+        }
+
         if(!map.getPlayer().isHasASword()){
             swordLabel.setText("");
         }
