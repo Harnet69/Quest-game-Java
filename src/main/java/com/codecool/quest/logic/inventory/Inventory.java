@@ -16,6 +16,25 @@ public class Inventory {
         return inventory;
     }
 
+    public ArrayList<String> getInventoryItems() {
+        ArrayList<String> inventoryItems = new ArrayList<>();
+            for(Item invItem : inventory){
+                inventoryItems.add(invItem.getTileName());
+            }
+        return inventoryItems;
+    }
+
+    public int getItemQUantity(String itemName){
+        int itemQuantity = 0;
+        for(Item invItem : inventory){
+            if(invItem.getTileName().equals(itemName)){
+                itemQuantity++;
+            }
+        }
+        return itemQuantity;
+    }
+
+
     public void addToInventory(Item item){
         inventory.add(item);
     }

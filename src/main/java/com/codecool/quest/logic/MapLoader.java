@@ -76,5 +76,4 @@ public class MapLoader {
         }
         return map;
     }
-
 }

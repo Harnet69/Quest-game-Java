@@ -73,7 +73,7 @@ public class Main extends Application {
                             bonesLabel.setText(item.getTileName());
                             break;
                         case "key":
-                            player.setHasAkey(true);
+//                            player.setHasAkey(true);
                             keyLabel.setText(item.getTileName());
                             break;
                     }
@@ -148,7 +148,7 @@ public class Main extends Application {
         for(Item itemInInventory : map.getPlayer().getInventory().getInventory()) {
             System.out.println(itemInInventory.getTileName());
         }
-
+        System.out.println(map.getPlayer().getInventory().getInventoryItems());
         if(!map.getPlayer().isHasAkey()){
             keyLabel.setText("");
         }
