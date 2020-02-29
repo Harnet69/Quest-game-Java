@@ -74,7 +74,7 @@ public class Main extends Application {
                             break;
                         case "key":
 //                            player.setHasAkey(true);
-                            keyLabel.setText(item.getTileName());
+                            keyLabel.setText("You picked a " + item.getTileName());
                             break;
                     }
 
@@ -145,11 +145,13 @@ public class Main extends Application {
         }
 
 //        show inventory
-        for(Item itemInInventory : map.getPlayer().getInventory().getInventory()) {
-            System.out.println(itemInInventory.getTileName());
-        }
-        System.out.println(map.getPlayer().getInventory().getInventoryItems());
-        if(!map.getPlayer().isHasAkey()){
+//        for(Item itemInInventory : map.getPlayer().getInventory().getInventory()) {
+//            System.out.println(itemInInventory.getTileName());
+//        }
+//        System.out.println(map.getPlayer().getInventory().getInventoryItems());
+        if(map.getPlayer().getInventory().getItemQUantity("key") > 0){
+            keyLabel.setText("key: " + map.getPlayer().getInventory().getItemQUantity("key"));
+        }else{
             keyLabel.setText("");
         }
         if(!map.getPlayer().isHasASword()){
