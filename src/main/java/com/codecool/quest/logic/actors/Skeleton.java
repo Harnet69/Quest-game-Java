@@ -4,9 +4,15 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.actors.Actor;
 
 public class Skeleton extends Actor {
+    private String name = "Skeleton";
 
     public Skeleton(Cell cell) {
         super(cell);
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     @Override

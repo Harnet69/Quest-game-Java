@@ -14,6 +14,8 @@ public class Player extends Actor {
     private boolean isHasAkey = false;
     private int damage = 4;
 
+    private String name = "Player";
+
     public Player(Cell cell) {
         super(cell);
     }
@@ -25,6 +27,11 @@ public class Player extends Actor {
             return "playerWithSword";
         }
         return "player";
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     public boolean isHasASword() {
@@ -60,7 +67,7 @@ public class Player extends Actor {
             Cell nextCell = super.getCell().getNeighbor(dx, dy);
             Actor enemy = nextCell.getActor();
             if (enemy != null) {
-                System.out.println("Player fight with a skeleton!!!");
+                System.out.println("Player fight with a " + enemy.getName() + "!!!");
                 enemy.decreaseHealth(damage);
                 this.decreaseHealth(2);
                 System.out.println(enemy.getHealth());

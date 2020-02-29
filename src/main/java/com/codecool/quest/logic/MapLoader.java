@@ -2,6 +2,7 @@ package com.codecool.quest.logic;
 
 import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.actors.Player;
+import com.codecool.quest.logic.actors.RustMonster;
 import com.codecool.quest.logic.actors.Skeleton;
 import com.codecool.quest.logic.items.Bones;
 import com.codecool.quest.logic.items.Key;
@@ -45,6 +46,11 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             Skeleton skel = new Skeleton(cell);
                             Actor.enemyActors.add(skel); // add skeleton to EnemiesArray
+                            break;
+                        case 'r':
+                            cell.setType(CellType.FLOOR);
+                            RustMonster rustMonster = new RustMonster(cell);
+                            Actor.enemyActors.add(rustMonster); // add rust monster to EnemiesArray
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);

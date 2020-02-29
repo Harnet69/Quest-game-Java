@@ -10,6 +10,7 @@ import java.util.Random;
 import static com.codecool.quest.logic.CellType.FLOOR;
 
 public abstract class Actor implements Drawable {
+    private String name = "Actor";
     private Cell cell;
     private int health = 10;
     public static ArrayList<Actor> enemyActors = new ArrayList<Actor>();
@@ -35,6 +36,9 @@ public abstract class Actor implements Drawable {
         return cell.getY();
     }
 
+    public String getName() {
+        return name;
+    }
 
     public void decreaseHealth(int pointsToRemove){
         health -= pointsToRemove;
@@ -75,10 +79,13 @@ public abstract class Actor implements Drawable {
                 cell.setActor(null);
                 nextCell.setActor(this);
                 cell = nextCell;
+            }else if(nextCellType == FLOOR && !nextCell.getActor().getName().equals("Skeleton")){
+                System.out.println(nextCell.getActor().getName());
+//                System.out.println("Skeleton said Yummy!!!");
+                moveBehaviour();
             }else{
                 moveBehaviour();
             }
-
         }
     }
 }
