@@ -3,21 +3,21 @@ package com.codecool.quest.logic.actors;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.actors.Actor;
+import com.codecool.quest.logic.inventory.Inventory;
 import com.codecool.quest.logic.items.Item;
 
-
-import static com.codecool.quest.logic.CellType.DOOR;
+import java.util.ArrayList;
 
 public class Player extends Actor {
+    private String name = "Player";
+    private Inventory inventory;
     private boolean isHasASword = false;
     private boolean isHasAkey = false;
     private int damage = 3;
 
-    private String name = "Player";
-
     public Player(Cell cell) {
         super(cell);
+        this.inventory = new Inventory();
     }
 
     public String getTileName() {
@@ -34,6 +34,10 @@ public class Player extends Actor {
     @Override
     public String getName() {
         return name;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public boolean isHasASword() {

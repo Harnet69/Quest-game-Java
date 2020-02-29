@@ -11,5 +11,4 @@ public class Bones extends Item {
     public String getTileName() {
         return "bones";
     }
-
 }
