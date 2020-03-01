@@ -5,6 +5,7 @@ import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
 import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.actors.Player;
+import com.codecool.quest.logic.items.Bones;
 import com.codecool.quest.logic.items.Item;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.util.jar.JarOutputStream;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap(); // game map
@@ -61,8 +64,7 @@ public class Main extends Application {
                 if (map.getPlayer().getCell().getItem() != null) {
                     Player player = map.getPlayer();
                     Item item = map.getPlayer().getCell().getItem();
-//                    System.out.println(item);
-                    player.getInventory().addToInventory(item);
+                    player.getInventory().addToInventory(item); // put item to an inventory
 
                     switch (item.getTileName()) {
                         case "sword":
@@ -73,29 +75,11 @@ public class Main extends Application {
                             bonesLabel.setText("You picked a " + item.getTileName());
                             break;
                         case "key":
-//                            player.setHasAkey(true);
                             keyLabel.setText("You picked a " + item.getTileName());
                             break;
                     }
 
-//                    if(item.getTileName().equals("sword")) {
-//                        player.setHasASword(true);
-//                        sword.setText(item.getTileName());
-//                    }
-//                    else if(item.getTileName().equals("bones")) {
-//                        bones.setText(item.getTileName());
-//                    }
-//                    else if(item.getTileName().equals("key")) {
-//                        player.setHasAkey(true);
-//                        key.setText(item.getTileName());
-//                    }
-//                    else if(!player.isHasAkey()){
-//                        System.out.println("No key");
-//                        key.setText("no key");
-//                    }
                     map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
-
-
                     refresh();
                 }
             }
@@ -120,6 +104,11 @@ public class Main extends Application {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
+        if(map.getPlayer().getHealth() <= 0){
+            System.out.println("Game Over");
+           return;
+        }
+
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(map, 0, -1);
@@ -138,6 +127,7 @@ public class Main extends Application {
                 refresh();
                 break;
         }
+
 
         // enemy movement after each player's step
         for (int i = 0; i < Actor.enemyActors.size(); i++) {
@@ -181,8 +171,15 @@ public class Main extends Application {
                 // Show items on a map
                 else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
-                } else {
+                }
+                // if actor is dead
+                else if (cell.getActor() != null && cell.getActor().getHealth() <= 0) {
+                    Actor.enemyActors.remove(cell.getActor()); // delete killed enemy from EnemyArray
                     cell.setActor(null);
+                    cell.setItem(new Bones(cell));
+                    Tiles.drawTile(context, cell, x, y);
+                }
+                else{
                     Tiles.drawTile(context, cell, x, y);
                 }
             }

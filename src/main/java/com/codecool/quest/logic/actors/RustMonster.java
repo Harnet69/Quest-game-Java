@@ -7,6 +7,7 @@ public class RustMonster extends Actor {
 
     public RustMonster(Cell cell) {
         super(cell);
+        super.health = 20;
     }
 
     @Override

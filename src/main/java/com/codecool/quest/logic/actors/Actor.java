@@ -12,7 +12,7 @@ import static com.codecool.quest.logic.CellType.FLOOR;
 public abstract class Actor implements Drawable {
     private String name = "Actor";
     private Cell cell;
-    private int health = 10;
+    protected int health = 10; //
     private int damage = 1;
     public static ArrayList<Actor> enemyActors = new ArrayList<Actor>();
 

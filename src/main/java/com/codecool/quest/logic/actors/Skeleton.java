@@ -9,6 +9,7 @@ public class Skeleton extends Actor {
 
     public Skeleton(Cell cell) {
         super(cell);
+        super.health = 8; // change stats here or in a field?
     }
 
     @Override

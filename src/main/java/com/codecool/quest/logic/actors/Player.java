@@ -84,7 +84,7 @@ public class Player extends Actor {
                     map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
                     map.getPlayer().getInventory().removeFromInventory("key");
 //                    System.out.println("But you have a key " + map.getPlayer().getInventory().getItemQUantity("key"));
-//                    map.getPlayer().setHasAkey(false);
+//                    map.getPlayer().setHa sAkey(false);
                 }
             }
         }
