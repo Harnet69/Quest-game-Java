@@ -67,6 +67,7 @@ public class Main extends Application {
                     player.getInventory().addToInventory(item); // put item to an inventory
 
                     switch (item.getTileName()) {
+                        //todo don't use normal strings, use enums
                         case "sword":
                             player.setHasASword(true);
                             swordLabel.setText(item.getTileName());
@@ -112,21 +113,19 @@ public class Main extends Application {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(map, 0, -1);
-                refresh();
                 break;
             case DOWN:
                 map.getPlayer().move(map, 0, 1);
-                refresh();
                 break;
             case LEFT:
                 map.getPlayer().move(map, -1, 0);
-                refresh();
                 break;
             case RIGHT:
                 map.getPlayer().move(map, 1, 0);
-                refresh();
                 break;
         }
+        refresh();
+
 
 
         // enemy movement after each player's step

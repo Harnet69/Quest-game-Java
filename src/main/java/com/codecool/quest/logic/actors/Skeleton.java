@@ -6,10 +6,11 @@ import com.codecool.quest.logic.actors.Actor;
 public class Skeleton extends Actor {
     private String name = "Skeleton";
     private int damage = 2;
+    protected int health = 8;
 
     public Skeleton(Cell cell) {
         super(cell);
-        super.health = 8; // change stats here or in a field?
+//        super.health = 8; // change stats here or in a field?
     }
 
     @Override

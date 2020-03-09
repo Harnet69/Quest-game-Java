@@ -22,7 +22,7 @@ public abstract class Actor implements Drawable {
     }
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public int getDamage() {
@@ -49,6 +49,9 @@ public abstract class Actor implements Drawable {
         health -= pointsToRemove;
     }
 
+    //todo make abstract
+    // make new class "enemy"
+    // have enemy implement 'moveBehaviour' as 'move'
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         // Interaction with environment
@@ -66,7 +69,7 @@ public abstract class Actor implements Drawable {
         Random rand = new Random();
 
         if(cell.getX() > 0 && cell.getX() < 24 && cell.getY() > 0 && cell.getY() < 19){
-        Cell nextCell = cell.getNeighbor(rand.nextInt(2 + 1) - 1, rand.nextInt(2 + 1) - 1);
+        Cell nextCell = cell.getNeighbor(rand.nextInt(3) - 1, rand.nextInt(3) - 1);
             // Interaction with environment
             CellType nextCellType = nextCell.getType();
             // actor can move only if the next cell is a floor and not an another actor

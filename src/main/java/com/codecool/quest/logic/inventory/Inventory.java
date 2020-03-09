@@ -6,18 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private ArrayList<Item> inventory;
+    //todo don't declare ArrayList -> declare List, then
+    private List<Item> inventory;
 
     public Inventory() {
         this.inventory = new ArrayList<>();
     }
 
-    public ArrayList<Item> getInventory() {
+    public List<Item> getInventory() {
         return inventory;
     }
 
-    public ArrayList<String> getInventoryItems() {
-        ArrayList<String> inventoryItems = new ArrayList<>();
+    public List<String> getInventoryItems() {
+        List<String> inventoryItems = new ArrayList<>();
             for(Item invItem : inventory){
                 inventoryItems.add(invItem.getTileName());
             }
