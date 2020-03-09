@@ -6,6 +6,7 @@ import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.gameController.GameController;
 import com.codecool.quest.logic.items.Item;
+import com.codecool.quest.logic.view.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -34,6 +35,7 @@ public class Main extends Application {
     Label swordLabel = new Label();
     Label bonesLabel = new Label();
     Label keyLabel = new Label();
+    View view = new View();
     GameController gameController = new GameController(context, canvas, map, healthLabel, swordLabel, bonesLabel, keyLabel);
 
 
@@ -44,6 +46,7 @@ public class Main extends Application {
     // right side's panel
     @Override
     public void start(Stage primaryStage) throws Exception {
+//        GridPane ui = view.ui();
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
