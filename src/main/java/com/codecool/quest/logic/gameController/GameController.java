@@ -22,27 +22,16 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class GameController {
-    private GraphicsContext context;
-    private Canvas canvas;
-    private GameMap map;
-    private Label healthLabel;
-    Label swordLabel;
-    Label bonesLabel;
-    Label keyLabel;
-    Button pickUpBtn;
+    View view;
+    GameMap map;
 
     public GameController(View view) {
-        this.context = view.getContext();
-        this.canvas = view.getCanvas();
-        this.map = view.getMap();
-        this.healthLabel = view.getHealthLabel();
-        this.swordLabel = view.getSwordLabel();
-        this.bonesLabel = view.getBonesLabel();
-        this.keyLabel = view.getKeyLabel();
-        this.pickUpBtn = view.getPickUpBtn();
+        this.view = view;
+         this.map = view.getMap();
     }
 
     public void playerMovements(KeyEvent keyEvent) {
+        GameMap map = view.getMap();
         if (map.getPlayer().getHealth() <= 0) {
             System.out.println("Game Over");
             return;
@@ -62,23 +51,23 @@ public class GameController {
                 map.getPlayer().move(map, 1, 0);
                 break;
         }
-        refresh();
-
-        if (map.getPlayer().getInventory().getItemQUantity("key") > 0) {
-            keyLabel.setText("key: " + map.getPlayer().getInventory().getItemQUantity("key"));
-        } else {
-            keyLabel.setText("");
-        }
-
-        if (map.getPlayer().getInventory().getItemQUantity("bones") > 0) {
-            bonesLabel.setText("bones: " + map.getPlayer().getInventory().getItemQUantity("bones"));
-        } else {
-            bonesLabel.setText("");
-        }
-
-        if (!map.getPlayer().isHasASword()) {
-            swordLabel.setText("");
-        }
+//        refresh();
+        view.inventoryView();
+//        if (map.getPlayer().getInventory().getItemQUantity("key") > 0) {
+//            keyLabel.setText("key: " + map.getPlayer().getInventory().getItemQUantity("key"));
+//        } else {
+//            keyLabel.setText("");
+//        }
+//
+//        if (map.getPlayer().getInventory().getItemQUantity("bones") > 0) {
+//            bonesLabel.setText("bones: " + map.getPlayer().getInventory().getItemQUantity("bones"));
+//        } else {
+//            bonesLabel.setText("");
+//        }
+//
+//        if (!map.getPlayer().isHasASword()) {
+//            swordLabel.setText("");
+//        }
         refresh();
         keyEvent.consume();
 
@@ -101,6 +90,8 @@ public class GameController {
     }
 
     public void refresh() {
+        GraphicsContext context = view.getContext();
+        Canvas canvas = view.getCanvas();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < map.getWidth(); x++) {
@@ -125,15 +116,14 @@ public class GameController {
                 }
             }
         }
-        healthLabel.setText("" + map.getPlayer().getHealth());
+        view.getHealthLabel().setText("" + map.getPlayer().getHealth());
     }
 
     // push a pick up button
     public void pushPickUpButton() {
-        pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
+        view.getPickUpBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-//            GameMap map = view.getMap();
                 if (map.getPlayer().getCell().getItem() != null) {
                     Player player = map.getPlayer();
                     Item item = map.getPlayer().getCell().getItem();
@@ -143,13 +133,13 @@ public class GameController {
                         //todo don't use normal strings, use enums
                         case "sword":
                             player.setHasASword(true);
-                            swordLabel.setText(item.getTileName());
+                            view.getSwordLabel().setText(item.getTileName());
                             break;
                         case "bones":
-                            bonesLabel.setText("You picked a " + item.getTileName());
+                            view.getBonesLabel().setText("You picked a " + item.getTileName());
                             break;
                         case "key":
-                            keyLabel.setText("You picked a " + item.getTileName());
+                            view.getKeyLabel().setText("You picked a " + item.getTileName());
                             break;
                     }
 

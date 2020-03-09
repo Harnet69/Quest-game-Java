@@ -20,6 +20,7 @@ public class View {
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
+    //todo ask is it correct to initialize it in fields of in constructor
     Label healthLabel = new Label();
     Button pickUpBtn = new Button("Pick Up");
     Label swordLabel = new Label();
@@ -59,7 +60,6 @@ public class View {
     }
 
     public void ui(GridPane ui){
-//        GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
@@ -73,32 +73,21 @@ public class View {
         ui.add(keyLabel, 0, 5);
     }
 
-//    pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
-//        @Override
-//        public void handle(ActionEvent e) {
-//            if (map.getPlayer().getCell().getItem() != null) {
-//                Player player = map.getPlayer();
-//                Item item = map.getPlayer().getCell().getItem();
-//                player.getInventory().addToInventory(item); // put item to an inventory
-//
-//                switch (item.getTileName()) {
-//                    //todo don't use normal strings, use enums
-//                    case "sword":
-//                        player.setHasASword(true);
-//                        swordLabel.setText(item.getTileName());
-//                        break;
-//                    case "bones":
-//                        bonesLabel.setText("You picked a " + item.getTileName());
-//                        break;
-//                    case "key":
-//                        keyLabel.setText("You picked a " + item.getTileName());
-//                        break;
-//                }
-//
-//                map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
-//                gameController.refresh();
-//            }
-//        }
-//
-//    });
+    public void inventoryView(){
+        if (map.getPlayer().getInventory().getItemQUantity("key") > 0) {
+            keyLabel.setText("key: " + map.getPlayer().getInventory().getItemQUantity("key"));
+        } else {
+            keyLabel.setText("");
+        }
+
+        if (map.getPlayer().getInventory().getItemQUantity("bones") > 0) {
+            bonesLabel.setText("bones: " + map.getPlayer().getInventory().getItemQUantity("bones"));
+        } else {
+            bonesLabel.setText("");
+        }
+
+        if (!map.getPlayer().isHasASword()) {
+            swordLabel.setText("");
+        }
+    }
 }
