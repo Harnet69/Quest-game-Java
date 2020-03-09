@@ -90,4 +90,20 @@ public class View {
             swordLabel.setText("");
         }
     }
+
+    public void pickUpMessage(Player player, Item item){
+        switch (item.getTileName()) {
+            //todo don't use normal strings, use enums
+            case "sword":
+                player.setHasASword(true);
+                getSwordLabel().setText(item.getTileName());
+                break;
+            case "bones":
+                getBonesLabel().setText("You picked a " + item.getTileName());
+                break;
+            case "key":
+                getKeyLabel().setText("You picked a " + item.getTileName());
+                break;
+        }
+    }
 }

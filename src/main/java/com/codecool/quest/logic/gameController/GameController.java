@@ -51,23 +51,7 @@ public class GameController {
                 map.getPlayer().move(map, 1, 0);
                 break;
         }
-//        refresh();
         view.inventoryView();
-//        if (map.getPlayer().getInventory().getItemQUantity("key") > 0) {
-//            keyLabel.setText("key: " + map.getPlayer().getInventory().getItemQUantity("key"));
-//        } else {
-//            keyLabel.setText("");
-//        }
-//
-//        if (map.getPlayer().getInventory().getItemQUantity("bones") > 0) {
-//            bonesLabel.setText("bones: " + map.getPlayer().getInventory().getItemQUantity("bones"));
-//        } else {
-//            bonesLabel.setText("");
-//        }
-//
-//        if (!map.getPlayer().isHasASword()) {
-//            swordLabel.setText("");
-//        }
         refresh();
         keyEvent.consume();
 
@@ -128,21 +112,7 @@ public class GameController {
                     Player player = map.getPlayer();
                     Item item = map.getPlayer().getCell().getItem();
                     player.getInventory().addToInventory(item); // put item to an inventory
-
-                    switch (item.getTileName()) {
-                        //todo don't use normal strings, use enums
-                        case "sword":
-                            player.setHasASword(true);
-                            view.getSwordLabel().setText(item.getTileName());
-                            break;
-                        case "bones":
-                            view.getBonesLabel().setText("You picked a " + item.getTileName());
-                            break;
-                        case "key":
-                            view.getKeyLabel().setText("You picked a " + item.getTileName());
-                            break;
-                    }
-
+                    view.pickUpMessage(player, item);
                     map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
                     refresh();
                 }
