@@ -5,6 +5,7 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.items.Bones;
+import com.codecool.quest.logic.view.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -26,14 +27,14 @@ public class GameController {
     Label bonesLabel;
     Label keyLabel;
 
-    public GameController(GraphicsContext context, Canvas canvas, GameMap map, Label healthLabel, Label swordLabel, Label bonesLabel, Label keyLabel) {
-        this.context = context;
-        this.canvas = canvas;
-        this.map = map;
-        this.healthLabel = healthLabel;
-        this.swordLabel = swordLabel;
-        this.bonesLabel = bonesLabel;
-        this.keyLabel = keyLabel;
+    public GameController(View view) {
+        this.context = view.getContext();
+        this.canvas = view.getCanvas();
+        this.map = view.getMap();
+        this.healthLabel = view.getHealthLabel();
+        this.swordLabel = view.getSwordLabel();
+        this.bonesLabel = view.getBonesLabel();
+        this.keyLabel = view.getKeyLabel();
     }
 
     public void playerMovements(KeyEvent keyEvent) {

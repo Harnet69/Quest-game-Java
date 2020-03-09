@@ -25,18 +25,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-    GameMap map = MapLoader.loadMap(); // game map
-    Canvas canvas = new Canvas(
-            map.getWidth() * Tiles.TILE_WIDTH,
-            map.getHeight() * Tiles.TILE_WIDTH);
-    GraphicsContext context = canvas.getGraphicsContext2D();
-    Label healthLabel = new Label();
-    Button pickUpBtn = new Button("Pick Up");
-    Label swordLabel = new Label();
-    Label bonesLabel = new Label();
-    Label keyLabel = new Label();
     View view = new View();
-    GameController gameController = new GameController(context, canvas, map, healthLabel, swordLabel, bonesLabel, keyLabel);
+    GameController gameController = new GameController(view);
 
 
     public static void main(String[] args) {
@@ -48,17 +38,18 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 //        GridPane ui = view.ui();
         GridPane ui = new GridPane();
-        ui.setPrefWidth(200);
-        ui.setPadding(new Insets(10));
-
-        ui.add(new Label("Health: "), 0, 0);
-        ui.add(healthLabel, 1, 0);
-
-        ui.add(pickUpBtn, 0, 1);
-        ui.add(new Label("Inventory: "), 0, 2);
-        ui.add(swordLabel, 0, 3);
-        ui.add(bonesLabel, 0, 4);
-        ui.add(keyLabel, 0, 5);
+        view.ui(ui);
+//        ui.setPrefWidth(200);
+//        ui.setPadding(new Insets(10));
+//
+//        ui.add(new Label("Health: "), 0, 0);
+//        ui.add(healthLabel, 1, 0);
+//
+//        ui.add(pickUpBtn, 0, 1);
+//        ui.add(new Label("Inventory: "), 0, 2);
+//        ui.add(swordLabel, 0, 3);
+//        ui.add(bonesLabel, 0, 4);
+//        ui.add(keyLabel, 0, 5);
 
         gameController.enemyMovement();
 
@@ -78,9 +69,11 @@ public class Main extends Application {
 
 
         // push a pick up button
-        pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
+        view.getPickUpBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                GameMap map = view.getMap();
+                System.out.println("Button was pushed!");
                 if (map.getPlayer().getCell().getItem() != null) {
                     Player player = map.getPlayer();
                     Item item = map.getPlayer().getCell().getItem();
@@ -90,13 +83,13 @@ public class Main extends Application {
                         //todo don't use normal strings, use enums
                         case "sword":
                             player.setHasASword(true);
-                            swordLabel.setText(item.getTileName());
+                            view.getSwordLabel().setText(item.getTileName());
                             break;
                         case "bones":
-                            bonesLabel.setText("You picked a " + item.getTileName());
+                            view.getBonesLabel().setText("You picked a " + item.getTileName());
                             break;
                         case "key":
-                            keyLabel.setText("You picked a " + item.getTileName());
+                            view.getKeyLabel().setText("You picked a " + item.getTileName());
                             break;
                     }
 
@@ -109,7 +102,7 @@ public class Main extends Application {
 
         BorderPane borderPane = new BorderPane();
 
-        borderPane.setCenter(canvas);
+        borderPane.setCenter(view.getCanvas());
         borderPane.setRight(ui);
 
         Scene scene = new Scene(borderPane);

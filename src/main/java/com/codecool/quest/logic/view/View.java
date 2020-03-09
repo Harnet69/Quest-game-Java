@@ -26,8 +26,40 @@ public class View {
     Label bonesLabel = new Label();
     Label keyLabel = new Label();
 
-    public void ui(){
-        GridPane ui = new GridPane();
+    public GameMap getMap() {
+        return map;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public GraphicsContext getContext() {
+        return context;
+    }
+
+    public Button getPickUpBtn() {
+        return pickUpBtn;
+    }
+
+    public Label getHealthLabel() {
+        return healthLabel;
+    }
+
+    public Label getSwordLabel() {
+        return swordLabel;
+    }
+
+    public Label getBonesLabel() {
+        return bonesLabel;
+    }
+
+    public Label getKeyLabel() {
+        return keyLabel;
+    }
+
+    public void ui(GridPane ui){
+//        GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
