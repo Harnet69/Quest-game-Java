@@ -74,14 +74,17 @@ public class View {
     }
 
     public void inventoryView(){
-        if (map.getPlayer().getInventory().getItemQUantity("key") > 0) {
-            keyLabel.setText("key: " + map.getPlayer().getInventory().getItemQUantity("key"));
+        int keysQuantity = map.getPlayer().getInventory().getItemQUantity("key");
+        int bonesQuantity = map.getPlayer().getInventory().getItemQUantity("bones");
+
+        if ( keysQuantity > 0) {
+            keyLabel.setText("key: " + keysQuantity);
         } else {
             keyLabel.setText("");
         }
 
-        if (map.getPlayer().getInventory().getItemQUantity("bones") > 0) {
-            bonesLabel.setText("bones: " + map.getPlayer().getInventory().getItemQUantity("bones"));
+        if (bonesQuantity > 0) {
+            bonesLabel.setText("bones: " + bonesQuantity);
         } else {
             bonesLabel.setText("");
         }
