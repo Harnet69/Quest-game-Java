@@ -5,6 +5,7 @@ import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.Drawable;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static com.codecool.quest.logic.CellType.FLOOR;
@@ -14,7 +15,7 @@ public abstract class Actor implements Drawable {
     private Cell cell;
     protected int health = 10; //
     private int damage = 1;
-    public static ArrayList<Actor> enemyActors = new ArrayList<Actor>();
+    public static List<Actor> enemyActors = new ArrayList<Actor>();
 
     public Actor(Cell cell) {
         this.cell = cell;

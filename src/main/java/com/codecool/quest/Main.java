@@ -7,6 +7,8 @@ import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.items.Bones;
 import com.codecool.quest.logic.items.Item;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.jar.JarOutputStream;
 
@@ -56,6 +59,22 @@ public class Main extends Application {
         ui.add(swordLabel, 0, 3);
         ui.add(bonesLabel, 0, 4);
         ui.add(keyLabel, 0, 5);
+
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+//                System.out.println("this is called every 1 seconds on UI thread");
+                // enemy movement after each player's step
+                for (int i = 0; i < Actor.enemyActors.size(); i++) {
+                    Actor.enemyActors.get(i).moveBehaviour();
+                }
+                refresh();
+            }
+        }));
+        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+        fiveSecondsWonder.play();
+
 
         // push a pick up button
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -128,10 +147,10 @@ public class Main extends Application {
 
 
 
-        // enemy movement after each player's step
-        for (int i = 0; i < Actor.enemyActors.size(); i++) {
-            Actor.enemyActors.get(i).moveBehaviour();
-        }
+//        // enemy movement after each player's step
+//        for (int i = 0; i < Actor.enemyActors.size(); i++) {
+//            Actor.enemyActors.get(i).moveBehaviour();
+//        }
 
 //        show inventory
 //        for(Item itemInInventory : map.getPlayer().getInventory().getInventory()) {
