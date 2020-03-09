@@ -4,7 +4,9 @@ import com.codecool.quest.Tiles;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.actors.Actor;
+import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.items.Bones;
+import com.codecool.quest.logic.items.Item;
 import com.codecool.quest.logic.view.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -26,6 +29,7 @@ public class GameController {
     Label swordLabel;
     Label bonesLabel;
     Label keyLabel;
+    Button pickUpBtn;
 
     public GameController(View view) {
         this.context = view.getContext();
@@ -35,6 +39,7 @@ public class GameController {
         this.swordLabel = view.getSwordLabel();
         this.bonesLabel = view.getBonesLabel();
         this.keyLabel = view.getKeyLabel();
+        this.pickUpBtn = view.getPickUpBtn();
     }
 
     public void playerMovements(KeyEvent keyEvent) {
@@ -121,5 +126,38 @@ public class GameController {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+    }
+
+    // push a pick up button
+    public void pushPickUpButton() {
+        pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+//            GameMap map = view.getMap();
+                if (map.getPlayer().getCell().getItem() != null) {
+                    Player player = map.getPlayer();
+                    Item item = map.getPlayer().getCell().getItem();
+                    player.getInventory().addToInventory(item); // put item to an inventory
+
+                    switch (item.getTileName()) {
+                        //todo don't use normal strings, use enums
+                        case "sword":
+                            player.setHasASword(true);
+                            swordLabel.setText(item.getTileName());
+                            break;
+                        case "bones":
+                            bonesLabel.setText("You picked a " + item.getTileName());
+                            break;
+                        case "key":
+                            keyLabel.setText("You picked a " + item.getTileName());
+                            break;
+                    }
+
+                    map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
+                    refresh();
+                }
+            }
+
+        });
     }
 }

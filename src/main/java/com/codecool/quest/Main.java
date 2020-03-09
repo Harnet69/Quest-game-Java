@@ -69,36 +69,36 @@ public class Main extends Application {
 
 
         // push a pick up button
-        view.getPickUpBtn().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                GameMap map = view.getMap();
-                System.out.println("Button was pushed!");
-                if (map.getPlayer().getCell().getItem() != null) {
-                    Player player = map.getPlayer();
-                    Item item = map.getPlayer().getCell().getItem();
-                    player.getInventory().addToInventory(item); // put item to an inventory
-
-                    switch (item.getTileName()) {
-                        //todo don't use normal strings, use enums
-                        case "sword":
-                            player.setHasASword(true);
-                            view.getSwordLabel().setText(item.getTileName());
-                            break;
-                        case "bones":
-                            view.getBonesLabel().setText("You picked a " + item.getTileName());
-                            break;
-                        case "key":
-                            view.getKeyLabel().setText("You picked a " + item.getTileName());
-                            break;
-                    }
-
-                    map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
-                    gameController.refresh();
-                }
-            }
-
-        });
+        gameController.pushPickUpButton();
+//        view.getPickUpBtn().setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent e) {
+//                GameMap map = view.getMap();
+//                if (map.getPlayer().getCell().getItem() != null) {
+//                    Player player = map.getPlayer();
+//                    Item item = map.getPlayer().getCell().getItem();
+//                    player.getInventory().addToInventory(item); // put item to an inventory
+//
+//                    switch (item.getTileName()) {
+//                        //todo don't use normal strings, use enums
+//                        case "sword":
+//                            player.setHasASword(true);
+//                            view.getSwordLabel().setText(item.getTileName());
+//                            break;
+//                        case "bones":
+//                            view.getBonesLabel().setText("You picked a " + item.getTileName());
+//                            break;
+//                        case "key":
+//                            view.getKeyLabel().setText("You picked a " + item.getTileName());
+//                            break;
+//                    }
+//
+//                    map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
+//                    gameController.refresh();
+//                }
+//            }
+//
+//        });
 
         BorderPane borderPane = new BorderPane();
 
