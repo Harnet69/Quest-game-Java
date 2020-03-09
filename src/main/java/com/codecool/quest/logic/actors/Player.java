@@ -45,14 +45,6 @@ public class Player extends Actor {
         isHasASword = hasASword;
     }
 
-    public boolean isHasAkey() {
-        return isHasAkey;
-    }
-
-    public void setHasAkey(boolean hasAkey) {
-        isHasAkey = hasAkey;
-    }
-
     public int getDamage() {
         return damage;
     }
@@ -83,8 +75,6 @@ public class Player extends Actor {
                 if (map.getPlayer().getInventory().getItemQUantity("key") > 0) {
                     map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
                     map.getPlayer().getInventory().removeFromInventory("key");
-//                    System.out.println("But you have a key " + map.getPlayer().getInventory().getItemQUantity("key"));
-//                    map.getPlayer().setHa sAkey(false);
                 }
             }
         }

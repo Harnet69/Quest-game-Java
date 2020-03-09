@@ -35,7 +35,6 @@ public class Inventory {
         return itemQuantity;
     }
 
-
     public void addToInventory(Item item){
         inventory.add(item);
     }
