@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+import static com.codecool.quest.logic.items.ItemType.*;
+
 public class View {
     GameMap map = MapLoader.loadMap(); // game map
     Canvas canvas = new Canvas(
@@ -74,11 +76,11 @@ public class View {
     }
 
     public void inventoryView(){
-        int keysQuantity = map.getPlayer().getInventory().getItemQUantity("key");
-        int bonesQuantity = map.getPlayer().getInventory().getItemQUantity("bones");
+        int keysQuantity = map.getPlayer().getInventory().getItemQUantity(KEY.getItemName());
+        int bonesQuantity = map.getPlayer().getInventory().getItemQUantity(BONES.getItemName());
 
         if ( keysQuantity > 0) {
-            keyLabel.setText("key: " + keysQuantity);
+            keyLabel.setText(KEY.getItemName() +"key: " + keysQuantity);
         } else {
             keyLabel.setText("");
         }
