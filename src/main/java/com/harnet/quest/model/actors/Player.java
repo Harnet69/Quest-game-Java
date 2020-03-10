@@ -9,15 +9,23 @@ import com.harnet.quest.model.inventory.Inventory;
 import com.harnet.quest.model.items.ItemType;
 import com.harnet.quest.view.View;
 
-public class Player extends Actor {
+public final class Player extends Actor {
+    private static Player instance = null;
     private String name = "Player";
     private Inventory inventory;
     private boolean isHasASword = false;
     private int damage = 3;
 
-    public Player(Cell cell) {
+    private Player(Cell cell) {
         super(cell);
         this.inventory = new Inventory();
+    }
+
+    public static Player getInstance(Cell cell) {
+        if (instance == null) {
+            instance = new Player(cell);
+        }
+        return instance;
     }
 
     public String getTileName() {
@@ -59,9 +67,12 @@ public class Player extends Actor {
     public void move(GameMap map, int dx, int dy) {
         super.move(dx, dy);
         Cell nextCell = super.getCell().getNeighbor(dx, dy);
+//        System.out.println(super.getCell().getX() + " : " + super.getCell().getY());
+        System.out.println(map.getPlayer().getCell().getX() + " : " + map.getPlayer().getCell().getY());
         if (nextCell.getTileName().equals("exit")) {
             System.out.println("There is the exit!");
-            GameController.startNewGame(MapLoader.loadMap("/map.txt"));
+            GameController.startNewGame(MapLoader.loadMap("/map.txt")); // load new map
+            GameController.getInstance().refresh();
         } else {
             Actor enemy = nextCell.getActor();
             if (enemy != null) {

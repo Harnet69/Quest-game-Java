@@ -8,7 +8,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    GameController gameController = new GameController();
 
     public static void main(String[] args) {
         launch(args);
@@ -16,8 +15,8 @@ public class Main extends Application {
     // right side's panel
     @Override
     public void start(Stage primaryStage) throws Exception {
-        gameController.startGame();
 
+        GameController gameController = GameController.getInstance();
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(gameController.getView().getCanvas());
         borderPane.setRight(gameController.getUi());
@@ -26,7 +25,11 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         gameController.refresh();
 
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, gameController::playerMovements);
+
+//        gameController.playerMove(scene);
+        gameController.setScene(scene);
+        gameController.startGame();
+//        scene.addEventFilter(KeyEvent.KEY_PRESSED, gameController::playerMovements);
         primaryStage.setTitle("Codecool Quest");
         primaryStage.show();
     }

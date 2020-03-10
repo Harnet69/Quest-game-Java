@@ -68,6 +68,7 @@ public class View {
     }
 
     public void ui(){
+        GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 

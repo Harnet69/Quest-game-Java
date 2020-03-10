@@ -12,6 +12,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
@@ -19,14 +20,34 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class GameController {
+public final class GameController {
+    private static GameController instance = null;
     View view;
+    Scene scene;
     public static GameMap map;
 
-    public GameController() {
-        this.view = new View();
-        map = view.getMap();
+        private GameController() {
+            this.view = new View();
+            map = view.getMap();
+        }
+
+        public static GameController getInstance() {
+            if (instance == null) {
+                instance = new GameController();
+            }
+            return instance;
+        }
+
+
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
+
+    //    public GameController() {
+//        this.view = new View();
+//        map = view.getMap();
+//    }
 
     public View getView() {
         return view;
@@ -39,15 +60,21 @@ public class GameController {
     public void startGame(){
         getView().ui();
         enemyMovement();
+        playerMove(scene);
         pushPickUpButton();
     }
 
     public static void startNewGame(GameMap newGameMap){
-        GameController.map = newGameMap;
+        map = newGameMap;
+        // Player stay on old map!!!
     }
 
     public GridPane getUi(){
         return view.getUi();
+    }
+
+    public void playerMove(Scene scene){
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, this::playerMovements);
     }
 
     public void playerMovements(KeyEvent keyEvent) {
@@ -137,7 +164,6 @@ public class GameController {
                     refresh();
                 }
             }
-
         });
     }
 }
