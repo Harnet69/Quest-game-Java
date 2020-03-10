@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class View {
-    GameMap map = MapLoader.loadMap(); // game map
+    public static GameMap map = MapLoader.loadMap(); // game map
     GridPane ui = new GridPane();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
@@ -29,6 +29,10 @@ public class View {
 
     public GameMap getMap() {
         return map;
+    }
+
+    public static void setMap(GameMap map) {
+        View.map = map;
     }
 
     public Canvas getCanvas() {

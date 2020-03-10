@@ -21,21 +21,29 @@ import javafx.util.Duration;
 
 public class GameController {
     View view;
-    GameMap map;
+    public static GameMap map;
 
     public GameController() {
         this.view = new View();
-        this.map = view.getMap();
+        map = view.getMap();
     }
 
     public View getView() {
         return view;
     }
 
+    public void setView(View view) {
+        this.view = view;
+    }
+
     public void startGame(){
         getView().ui();
         enemyMovement();
         pushPickUpButton();
+    }
+
+    public static void startNewGame(GameMap newGameMap){
+        GameController.map = newGameMap;
     }
 
     public GridPane getUi(){
