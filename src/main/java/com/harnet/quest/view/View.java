@@ -3,10 +3,8 @@ package com.codecool.quest.logic.view;
 import com.codecool.quest.Tiles;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
-import com.codecool.quest.logic.actors.Player;
-import com.codecool.quest.logic.items.Item;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.codecool.quest.logic.model.actors.Player;
+import com.codecool.quest.logic.model.items.Item;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-import static com.codecool.quest.logic.items.ItemType.*;
+import static com.codecool.quest.logic.model.items.ItemType.*;
 
 public class View {
     GameMap map = MapLoader.loadMap(); // game map

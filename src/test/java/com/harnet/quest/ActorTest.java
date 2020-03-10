@@ -1,7 +1,7 @@
 package com.codecool.quest.logic;
 
-import com.codecool.quest.logic.actors.Player;
-import com.codecool.quest.logic.actors.Skeleton;
+import com.codecool.quest.logic.model.actors.Player;
+import com.codecool.quest.logic.model.actors.Skeleton;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

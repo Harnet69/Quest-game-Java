@@ -1,12 +1,12 @@
 package com.codecool.quest.logic;
 
-import com.codecool.quest.logic.actors.Actor;
-import com.codecool.quest.logic.actors.Player;
-import com.codecool.quest.logic.actors.RustMonster;
-import com.codecool.quest.logic.actors.Skeleton;
-import com.codecool.quest.logic.items.Bones;
-import com.codecool.quest.logic.items.Key;
-import com.codecool.quest.logic.items.Sword;
+import com.codecool.quest.logic.model.actors.Actor;
+import com.codecool.quest.logic.model.actors.Player;
+import com.codecool.quest.logic.model.actors.RustMonster;
+import com.codecool.quest.logic.model.actors.Skeleton;
+import com.codecool.quest.logic.model.items.Bones;
+import com.codecool.quest.logic.model.items.Key;
+import com.codecool.quest.logic.model.items.Sword;
 
 import java.io.InputStream;
 import java.util.Scanner;

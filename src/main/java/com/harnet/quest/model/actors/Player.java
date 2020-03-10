@@ -1,9 +1,9 @@
-package com.codecool.quest.logic.actors;
+package com.codecool.quest.logic.model.actors;
 
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.inventory.Inventory;
+import com.codecool.quest.logic.model.inventory.Inventory;
 
 public class Player extends Actor {
     private String name = "Player";

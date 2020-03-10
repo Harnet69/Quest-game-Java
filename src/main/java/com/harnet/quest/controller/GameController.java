@@ -1,22 +1,19 @@
-package com.codecool.quest.logic.gameController;
+package com.codecool.quest.logic.controller;
 
 import com.codecool.quest.Tiles;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.actors.Actor;
-import com.codecool.quest.logic.actors.Player;
-import com.codecool.quest.logic.items.Bones;
-import com.codecool.quest.logic.items.Item;
+import com.codecool.quest.logic.model.actors.Actor;
+import com.codecool.quest.logic.model.actors.Player;
+import com.codecool.quest.logic.model.items.Bones;
+import com.codecool.quest.logic.model.items.Item;
 import com.codecool.quest.logic.view.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -25,9 +22,13 @@ public class GameController {
     View view;
     GameMap map;
 
-    public GameController(View view) {
-        this.view = view;
-         this.map = view.getMap();
+    public GameController() {
+        this.view = new View();
+        this.map = view.getMap();
+    }
+
+    public View getView() {
+        return view;
     }
 
     public void playerMovements(KeyEvent keyEvent) {

@@ -1,4 +1,4 @@
-package com.codecool.quest.logic.items;
+package com.codecool.quest.logic.model.items;
 
 import com.codecool.quest.logic.Cell;
 

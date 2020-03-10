@@ -1,7 +1,6 @@
-package com.codecool.quest.logic.actors;
+package com.codecool.quest.logic.model.actors;
 
 import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.actors.Actor;
 
 public class Skeleton extends Actor {
     private String name = "Skeleton";
