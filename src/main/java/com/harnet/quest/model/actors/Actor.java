@@ -1,14 +1,14 @@
-package com.codecool.quest.logic.model.actors;
+package com.harnet.quest.model.actors;
 
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.CellType;
-import com.codecool.quest.logic.Drawable;
+import com.harnet.quest.model.board.Cell;
+import com.harnet.quest.model.board.CellType;
+import com.harnet.quest.model.board.Drawable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.codecool.quest.logic.CellType.FLOOR;
+import static com.harnet.quest.model.board.CellType.FLOOR;
 
 public abstract class Actor implements Drawable {
     private String name = "Actor";

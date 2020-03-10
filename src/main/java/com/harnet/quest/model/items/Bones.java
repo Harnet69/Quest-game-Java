@@ -1,6 +1,6 @@
-package com.codecool.quest.logic.model.items;
+package com.harnet.quest.model.items;
 
-import com.codecool.quest.logic.Cell;
+import com.harnet.quest.model.board.Cell;
 
 public class Bones extends Item {
 

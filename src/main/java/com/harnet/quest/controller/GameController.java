@@ -1,13 +1,13 @@
-package com.codecool.quest.logic.controller;
+package com.harnet.quest.controller;
 
-import com.codecool.quest.Tiles;
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.model.actors.Actor;
-import com.codecool.quest.logic.model.actors.Player;
-import com.codecool.quest.logic.model.items.Bones;
-import com.codecool.quest.logic.model.items.Item;
-import com.codecool.quest.logic.view.View;
+import com.harnet.quest.model.board.Tiles;
+import com.harnet.quest.model.board.Cell;
+import com.harnet.quest.model.board.GameMap;
+import com.harnet.quest.model.actors.Actor;
+import com.harnet.quest.model.actors.Player;
+import com.harnet.quest.model.items.Bones;
+import com.harnet.quest.model.items.Item;
+import com.harnet.quest.view.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -15,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
@@ -29,6 +30,16 @@ public class GameController {
 
     public View getView() {
         return view;
+    }
+
+    public void startGame(){
+        getView().ui();
+        enemyMovement();
+        pushPickUpButton();
+    }
+
+    public GridPane getUi(){
+        return view.getUi();
     }
 
     public void playerMovements(KeyEvent keyEvent) {

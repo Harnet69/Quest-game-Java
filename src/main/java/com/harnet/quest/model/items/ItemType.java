@@ -1,4 +1,4 @@
-package com.codecool.quest.logic.model.items;
+package com.harnet.quest.model.items;
 
 public enum ItemType {
     BONES("bones"),

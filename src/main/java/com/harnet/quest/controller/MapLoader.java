@@ -1,12 +1,15 @@
-package com.codecool.quest.logic;
+package com.harnet.quest.controller;
 
-import com.codecool.quest.logic.model.actors.Actor;
-import com.codecool.quest.logic.model.actors.Player;
-import com.codecool.quest.logic.model.actors.RustMonster;
-import com.codecool.quest.logic.model.actors.Skeleton;
-import com.codecool.quest.logic.model.items.Bones;
-import com.codecool.quest.logic.model.items.Key;
-import com.codecool.quest.logic.model.items.Sword;
+import com.harnet.quest.model.board.Cell;
+import com.harnet.quest.model.board.CellType;
+import com.harnet.quest.model.board.GameMap;
+import com.harnet.quest.model.actors.Actor;
+import com.harnet.quest.model.actors.Player;
+import com.harnet.quest.model.actors.RustMonster;
+import com.harnet.quest.model.actors.Skeleton;
+import com.harnet.quest.model.items.Bones;
+import com.harnet.quest.model.items.Key;
+import com.harnet.quest.model.items.Sword;
 
 import java.io.InputStream;
 import java.util.Scanner;

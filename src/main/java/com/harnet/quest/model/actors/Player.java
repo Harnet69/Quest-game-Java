@@ -1,9 +1,9 @@
-package com.codecool.quest.logic.model.actors;
+package com.harnet.quest.model.actors;
 
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.CellType;
-import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.model.inventory.Inventory;
+import com.harnet.quest.model.board.Cell;
+import com.harnet.quest.model.board.CellType;
+import com.harnet.quest.model.board.GameMap;
+import com.harnet.quest.model.inventory.Inventory;
 
 public class Player extends Actor {
     private String name = "Player";

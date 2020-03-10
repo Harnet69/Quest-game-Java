@@ -1,4 +1,4 @@
-package com.codecool.quest.logic;
+package com.harnet.quest.model.board;
 
 public enum CellType {
     EMPTY("empty"),

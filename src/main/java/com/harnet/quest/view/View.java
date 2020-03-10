@@ -1,10 +1,11 @@
-package com.codecool.quest.logic.view;
+package com.harnet.quest.view;
 
-import com.codecool.quest.Tiles;
-import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.MapLoader;
-import com.codecool.quest.logic.model.actors.Player;
-import com.codecool.quest.logic.model.items.Item;
+import com.harnet.quest.model.board.Tiles;
+import com.harnet.quest.model.board.GameMap;
+import com.harnet.quest.controller.MapLoader;
+import com.harnet.quest.model.actors.Player;
+import com.harnet.quest.model.items.Item;
+import com.harnet.quest.model.items.ItemType;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,10 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-import static com.codecool.quest.logic.model.items.ItemType.*;
-
 public class View {
     GameMap map = MapLoader.loadMap(); // game map
+    GridPane ui = new GridPane();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
@@ -59,7 +59,11 @@ public class View {
         return keyLabel;
     }
 
-    public void ui(GridPane ui){
+    public GridPane getUi() {
+        return ui;
+    }
+
+    public void ui(){
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
@@ -74,11 +78,11 @@ public class View {
     }
 
     public void inventoryView(){
-        int keysQuantity = map.getPlayer().getInventory().getItemQUantity(KEY.getItemName());
-        int bonesQuantity = map.getPlayer().getInventory().getItemQUantity(BONES.getItemName());
+        int keysQuantity = map.getPlayer().getInventory().getItemQUantity(ItemType.KEY.getItemName());
+        int bonesQuantity = map.getPlayer().getInventory().getItemQUantity(ItemType.BONES.getItemName());
 
         if ( keysQuantity > 0) {
-            keyLabel.setText(KEY.getItemName() +"key: " + keysQuantity);
+            keyLabel.setText(ItemType.KEY.getItemName() +"key: " + keysQuantity);
         } else {
             keyLabel.setText("");
         }

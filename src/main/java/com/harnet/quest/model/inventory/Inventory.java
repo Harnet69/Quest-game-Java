@@ -1,6 +1,6 @@
-package com.codecool.quest.logic.model.inventory;
+package com.harnet.quest.model.inventory;
 
-import com.codecool.quest.logic.model.items.Item;
+import com.harnet.quest.model.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;

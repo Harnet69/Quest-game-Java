@@ -1,8 +1,8 @@
-package com.codecool.quest.logic;
+package com.harnet.quest.model.board;
 
-import com.codecool.quest.logic.model.actors.Player;
-import com.codecool.quest.logic.model.actors.Skeleton;
-import com.codecool.quest.logic.model.items.Item;
+import com.harnet.quest.model.actors.Player;
+import com.harnet.quest.model.actors.Skeleton;
+import com.harnet.quest.model.items.Item;
 
 public class GameMap {
     private int width;

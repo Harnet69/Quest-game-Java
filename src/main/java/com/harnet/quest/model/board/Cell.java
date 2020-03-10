@@ -1,7 +1,7 @@
-package com.codecool.quest.logic;
+package com.harnet.quest.model.board;
 
-import com.codecool.quest.logic.model.actors.Actor;
-import com.codecool.quest.logic.model.items.Item;
+import com.harnet.quest.model.actors.Actor;
+import com.harnet.quest.model.items.Item;
 
 public class Cell implements Drawable {
     private CellType type;

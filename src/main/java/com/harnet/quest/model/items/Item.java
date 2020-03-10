@@ -1,7 +1,7 @@
-package com.codecool.quest.logic.model.items;
+package com.harnet.quest.model.items;
 
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.Drawable;
+import com.harnet.quest.model.board.Cell;
+import com.harnet.quest.model.board.Drawable;
 
 public abstract class Item implements Drawable {
     private Cell cell;
