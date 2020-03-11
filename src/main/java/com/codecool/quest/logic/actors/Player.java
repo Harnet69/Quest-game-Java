@@ -65,6 +65,7 @@ public class Player extends Actor {
         super.move(dx, dy);
         if (super.getCell().getNeighbor(dx, dy) == null) {
             System.out.println("There is the exit!");
+
         } else {
             Cell nextCell = super.getCell().getNeighbor(dx, dy);
             Actor enemy = nextCell.getActor();
