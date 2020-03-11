@@ -1,8 +1,10 @@
 package com.codecool.quest.logic.actors;
 
+import com.codecool.quest.Main;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.GameMap;
+import com.codecool.quest.logic.MapLoader;
 import com.codecool.quest.logic.inventory.Inventory;
 
 public class Player extends Actor {
@@ -63,11 +65,11 @@ public class Player extends Actor {
 
     public void move(GameMap map, int dx, int dy) {
         super.move(dx, dy);
-        if (super.getCell().getNeighbor(dx, dy) == null) {
+        Cell nextCell = super.getCell().getNeighbor(dx, dy);
+        if (nextCell.getTileName().equals("exit")) {
             System.out.println("There is the exit!");
-
+            Main.map = MapLoader.loadMap("/map2.txt");
         } else {
-            Cell nextCell = super.getCell().getNeighbor(dx, dy);
             Actor enemy = nextCell.getActor();
             if (enemy != null) {
                 System.out.println("Player fight with a " + enemy.getName() + "!!!");

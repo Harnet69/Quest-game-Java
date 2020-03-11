@@ -28,7 +28,7 @@ import javafx.util.Duration;
 import java.util.jar.JarOutputStream;
 
 public class Main extends Application {
-    GameMap map = MapLoader.loadMap(); // game map
+    public static GameMap map = MapLoader.loadMap(); // game map
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
@@ -204,4 +204,5 @@ public class Main extends Application {
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
     }
+
 }
