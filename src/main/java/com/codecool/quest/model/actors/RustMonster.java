@@ -1,6 +1,6 @@
-package com.codecool.quest.logic.actors;
+package com.codecool.quest.model.actors;
 
-import com.codecool.quest.logic.Cell;
+import com.codecool.quest.model.board.Cell;
 
 public class RustMonster extends Actor {
     private String name = "rustMonster";

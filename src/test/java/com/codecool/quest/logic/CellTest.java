@@ -1,5 +1,8 @@
 package com.codecool.quest.logic;
 
+import com.codecool.quest.model.board.Cell;
+import com.codecool.quest.model.board.CellType;
+import com.codecool.quest.model.board.GameMap;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,11 +1,11 @@
-package com.codecool.quest.logic.actors;
+package com.codecool.quest.model.actors;
 
-import com.codecool.quest.Main;
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.CellType;
-import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.MapLoader;
-import com.codecool.quest.logic.inventory.Inventory;
+import com.codecool.quest.controller.Main;
+import com.codecool.quest.model.board.Cell;
+import com.codecool.quest.model.board.CellType;
+import com.codecool.quest.model.board.GameMap;
+import com.codecool.quest.controller.MapLoader;
+import com.codecool.quest.model.inventory.Inventory;
 
 public class Player extends Actor {
     private String name = "Player";
@@ -82,12 +82,10 @@ public class Player extends Actor {
                 this.decreaseHealth(enemy.getDamage());
                 System.out.println(enemy.getHealth());
             } else if (nextCell.getTileName().equals("door") || nextCell.getTileName().equals("exit")) {
-//                System.out.println("It's a locked door");
+                System.out.println("It's a locked door");
                 if (map.getPlayer().getInventory().getItemQUantity("key") > 0) {
                     map.getCell(nextCell.getX(), nextCell.getY()).setType(CellType.FLOOR);
                     map.getPlayer().getInventory().removeFromInventory("key");
-//                    System.out.println("But you have a key " + map.getPlayer().getInventory().getItemQUantity("key"));
-//                    map.getPlayer().setHa sAkey(false);
                 }
             }
         }

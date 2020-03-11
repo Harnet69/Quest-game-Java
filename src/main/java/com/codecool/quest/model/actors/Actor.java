@@ -1,14 +1,14 @@
-package com.codecool.quest.logic.actors;
+package com.codecool.quest.model.actors;
 
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.CellType;
-import com.codecool.quest.logic.Drawable;
+import com.codecool.quest.model.board.Cell;
+import com.codecool.quest.model.board.CellType;
+import com.codecool.quest.model.board.Drawable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.codecool.quest.logic.CellType.FLOOR;
+import static com.codecool.quest.model.board.CellType.FLOOR;
 
 public abstract class Actor implements Drawable {
     private String name = "Actor";
@@ -50,9 +50,6 @@ public abstract class Actor implements Drawable {
         health -= pointsToRemove;
     }
 
-    //todo make abstract
-    // make new class "enemy"
-    // have enemy implement 'moveBehaviour' as 'move'
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         // Interaction with environment

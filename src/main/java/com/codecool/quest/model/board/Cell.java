@@ -1,7 +1,7 @@
-package com.codecool.quest.logic;
+package com.codecool.quest.model.board;
 
-import com.codecool.quest.logic.actors.Actor;
-import com.codecool.quest.logic.items.Item;
+import com.codecool.quest.model.actors.Actor;
+import com.codecool.quest.model.items.Item;
 
 public class Cell implements Drawable {
     private CellType type;
@@ -31,10 +31,6 @@ public class Cell implements Drawable {
 
     public Actor getActor() {
         return actor;
-    }
-
-    public String getActorName() {
-        return actor.getName();
     }
 
     public Item getItem() {

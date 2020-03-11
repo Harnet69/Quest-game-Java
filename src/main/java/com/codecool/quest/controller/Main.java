@@ -1,12 +1,12 @@
-package com.codecool.quest;
+package com.codecool.quest.controller;
 
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.GameMap;
-import com.codecool.quest.logic.MapLoader;
-import com.codecool.quest.logic.actors.Actor;
-import com.codecool.quest.logic.actors.Player;
-import com.codecool.quest.logic.items.Bones;
-import com.codecool.quest.logic.items.Item;
+import com.codecool.quest.model.board.Tiles;
+import com.codecool.quest.model.board.Cell;
+import com.codecool.quest.model.board.GameMap;
+import com.codecool.quest.model.actors.Actor;
+import com.codecool.quest.model.actors.Player;
+import com.codecool.quest.model.items.Bones;
+import com.codecool.quest.model.items.Item;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -24,8 +24,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.util.jar.JarOutputStream;
 
 public class Main extends Application {
     public static GameMap map = MapLoader.loadMap(); // game map
@@ -60,21 +58,19 @@ public class Main extends Application {
         ui.add(bonesLabel, 0, 4);
         ui.add(keyLabel, 0, 5);
 
-        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+        Timeline oneSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-//                System.out.println("this is called every 1 seconds on UI thread");
-                // enemy movement after each player's step
+                // enemy move every one second
                 for (int i = 0; i < Actor.enemyActors.size(); i++) {
                     Actor.enemyActors.get(i).moveBehaviour();
                 }
                 refresh();
             }
         }));
-        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
-        fiveSecondsWonder.play();
-
+        oneSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+        oneSecondsWonder.play();
 
         // push a pick up button
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -98,7 +94,6 @@ public class Main extends Application {
                             keyLabel.setText("You picked a " + item.getTileName());
                             break;
                     }
-
                     map.getCell(player.getCell().getX(), player.getCell().getY()).setItem(null);
                     refresh();
                 }
@@ -115,11 +110,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         refresh();
 
-//        scene.setOnKeyPressed(this::onKeyPressed);
         scene.addEventFilter(KeyEvent.KEY_PRESSED, this::onKeyPressed);
-//        pickUpBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::mo);
         primaryStage.setTitle("Codecool Quest");
-//        primaryStage.requestFocus();
         primaryStage.show();
     }
 
@@ -145,18 +137,6 @@ public class Main extends Application {
         }
         refresh();
 
-
-
-//        // enemy movement after each player's step
-//        for (int i = 0; i < Actor.enemyActors.size(); i++) {
-//            Actor.enemyActors.get(i).moveBehaviour();
-//        }
-
-//        show inventory
-//        for(Item itemInInventory : map.getPlayer().getInventory().getInventory()) {
-//            System.out.println(itemInInventory.getTileName());
-//        }
-//        System.out.println(map.getPlayer().getInventory().getInventoryItems());
         if(map.getPlayer().getInventory().getItemQUantity("key") > 0){
             keyLabel.setText("key: " + map.getPlayer().getInventory().getItemQUantity("key"));
         }else{

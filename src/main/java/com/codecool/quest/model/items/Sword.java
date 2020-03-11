@@ -1,6 +1,6 @@
-package com.codecool.quest.logic.items;
+package com.codecool.quest.model.items;
 
-import com.codecool.quest.logic.Cell;
+import com.codecool.quest.model.board.Cell;
 
 public class Sword extends Item {
 
