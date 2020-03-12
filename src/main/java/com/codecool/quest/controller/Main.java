@@ -42,7 +42,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    // right side's panel
+    // right side panel
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane ui = new GridPane();
