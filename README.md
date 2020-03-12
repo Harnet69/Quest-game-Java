@@ -2,6 +2,10 @@
 
 This is a simple tile-based RPG game.
 
+
+## Video of game process:
+![ScreenShot](https://github.com/Harnet69/Quest-game-Java/blob/master/src/main/resources/video.gif?raw=true)
+
 ## Opening the project
 
 Open the project in IntelliJ IDEA. This is a Maven project, so you will need to open `pom.xml`.
@@ -22,7 +26,7 @@ mvn javafx:run
 
 ## Architecture
 
-The project is meant to teach the concept of **layer separation**. All of the game logic (that is, player movement, game rules, and so on), is in the `logic` package, completely independent of user interface code. In principle, you could implement a completely different interface (terminal, web, Virtual Reality...) for the same logic code.
+The project is meant to learn the concept of **layer separation**. All of the game logic (that is, player movement, game rules, and so on), is in the `logic` package, completely independent of user interface code. In principle, you could implement a completely different interface (terminal, web, Virtual Reality...) for the same logic code.
 
 ## Product Backlog
 
